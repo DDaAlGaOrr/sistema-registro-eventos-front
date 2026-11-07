@@ -1,0 +1,72 @@
+<div class="p-4 p-md-5 d-flex align-items-center justify-content-center">
+  <div class="recibido-container card rounded-3 border-0 shadow p-5 col-12 col-md-8">
+
+    <!-- Ícono: sobre con badge de check -->
+    <div class="mail-icon-wrapper">
+      <div class="mail-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+        </svg>
+      </div>
+      <div class="check-badge">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Título -->
+    <h2 class="recibido-titulo">{{ 'STEP5.TITLE' | translate }}, {{ primerNombre }}!</h2>
+
+    <!-- Subtítulo en verde -->
+    <p class="recibido-subtitulo">
+      {{ 'STEP5.Subtitle' | translate }}
+    </p>
+
+    <!-- Divisor con check central -->
+    <div class="divider-check">
+      <span class="divider-line"></span>
+      <div class="divider-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <span class="divider-line"></span>
+    </div>
+
+    <!-- Mensaje de correo enviado -->
+    <p class="correo-texto">
+      {{ 'STEP5.Description1' | translate }} <strong>{{ correoElectronico || 'email' }}</strong> {{ 'STEP5.Description2' | translate }}
+    </p>
+
+    <!-- Alerta de spam -->
+    <div class="alerta-spam" role="alert">
+      <div class="alerta-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
+          stroke="none">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1-9a1 1 0 0 0-1 1v4a1 1 0 1 0 2 0V8a1 1 0 0 0-1-1z" />
+        </svg>
+      </div>
+      <p class="alerta-texto">
+        {{ 'STEP5.Badget' | translate }}
+      </p>
+    </div>
+
+    <!-- Botón Regresar a Feja -->
+    <button type="button" class="btn-feja" (click)="irAFeja()" id="btn-ir-a-feja">
+      {{ 'STEP5.ButtonBack' | translate }}
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M2 12h20"></path>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+      </svg>
+    </button>
+
+  </div>
+</div>

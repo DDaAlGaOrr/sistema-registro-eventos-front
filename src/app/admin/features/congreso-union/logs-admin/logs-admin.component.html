@@ -1,0 +1,156 @@
+<div class="container-fluid py-4" style="max-width: 1180px">
+  <div class="card border-0 shadow-sm rounded-4 p-3 p-md-4">
+    <!-- Buscador -->
+    <div class="mb-3" style="max-width: 420px">
+      <div class="input-group">
+        <span class="input-group-text bg-white border-end-0">
+          <img
+            src="../../../../../assets/icons/registered/search.svg"
+            alt="Find Icon"
+            style="width: 15px"
+          />
+        </span>
+        <input
+          type="text"
+          class="form-control border-start-0 ps-0"
+          placeholder="Buscar..."
+          [(ngModel)]="busqueda"
+          (ngModelChange)="onBusquedaChange()"
+        />
+      </div>
+    </div>
+
+    <!-- Tabla -->
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead>
+          <tr class="text-uppercase">
+            <th>Nº</th>
+            <th>Admin</th>
+            <th>Acción</th>
+            <th>Registro afectado</th>
+            <th>Detalles</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- ===== SKELETON mientras carga ===== -->
+          <ng-container *ngIf="cargando; else contenidoReal">
+            <tr *ngFor="let i of skeletonRows" class="placeholder-glow">
+              <td>
+                <span class="placeholder col-6" style="height: 14px"></span>
+              </td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <span
+                    class="placeholder rounded-circle skeleton-avatar"
+                  ></span>
+                  <span class="placeholder col-8" style="height: 14px"></span>
+                </div>
+              </td>
+              <td>
+                <span
+                  class="placeholder rounded-pill col-8 skeleton-badge"
+                ></span>
+              </td>
+              <td>
+                <span class="placeholder col-6" style="height: 14px"></span>
+              </td>
+              <td>
+                <span class="placeholder col-9" style="height: 14px"></span>
+              </td>
+              <td>
+                <span class="placeholder col-6" style="height: 14px"></span>
+              </td>
+            </tr>
+          </ng-container>
+
+          <!-- ===== CONTENIDO REAL ===== -->
+          <ng-template #contenidoReal>
+            <tr *ngIf="logsPagina.length === 0" class="empty-state">
+              <td colspan="6">
+                No se encontraron registros de log con esos filtros.
+              </td>
+            </tr>
+            <tr *ngFor="let log of logsPagina; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <span
+                    class="avatar-circle"
+                    [style.background]="colorAvatar(log.adminName)"
+                    >{{ inicial(log.adminName) }}</span
+                  >
+                  <span class="fw-medium">{{ log.adminName }}</span>
+                </div>
+              </td>
+              <td>
+                <span [ngClass]="claseBadge(log.action)">
+                  <span class="dot"></span>{{ log.action }}
+                </span>
+              </td>
+              <td>{{ log.afectedRegister }}</td>
+              <td class="text-secondary">
+                {{ log.details ? (log.details | json) : "NULL" }}
+              </td>
+              <td>{{ fechaCorta(log.created_at) }}</td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer: total + paginación -->
+    <div
+      class="d-flex justify-content-between align-items-center flex-wrap gap-3 mt-3 pt-2"
+    >
+      <div class="text-secondary small fw-medium">
+        Total encontrados: {{ logsFiltrados.length }}
+      </div>
+      <ul class="pagination mb-0">
+        <li class="page-item" [class.disabled]="paginaActual === 1">
+          <button class="page-link" (click)="anterior()">
+            <img
+              src="../../../../../assets/icons/registered/chevron-left.svg"
+            />
+          </button>
+        </li>
+        <li
+          *ngFor="let p of rangoPaginas"
+          class="page-item"
+          [class.disabled]="p === '...'"
+          [class.active]="p === paginaActual"
+        >
+          <button *ngIf="p !== '...'" class="page-link" (click)="irAPagina(p)">
+            {{ p }}
+          </button>
+          <span *ngIf="p === '...'" class="page-link border-0 bg-transparent"
+            >…</span
+          >
+        </li>
+        <li class="page-item" [class.disabled]="paginaActual === totalPaginas">
+          <button class="page-link" (click)="siguiente()">
+            <img
+              src="../../../../../assets/icons/registered/chevron-right.svg"
+            />
+          </button>
+        </li>
+      </ul>
+      <div class="d-flex align-items-center gap-3 flex-wrap">
+        <div class="d-flex align-items-center gap-2 text-secondary small">
+          <span>Mostrar por página</span>
+          <select
+            class="form-select form-select-sm"
+            style="width: auto"
+            [(ngModel)]="porPagina"
+            (ngModelChange)="onPorPaginaChange()"
+          >
+            <option *ngFor="let opcion of opcionesPorPagina" [ngValue]="opcion">
+              {{ opcion }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

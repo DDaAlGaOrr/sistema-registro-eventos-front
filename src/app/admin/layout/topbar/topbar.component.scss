@@ -1,0 +1,209 @@
+// ─── Variables ────────────────────────────────────────────────────────────────
+$topbar-bg: #ffffff;
+$topbar-border: #e8eaf0;
+$topbar-height: 64px;
+
+$text-primary: #1a1d2e;
+$text-secondary: #8b8fa8;
+$text-muted: #b0b3c6;
+
+$accent: #4f46e5;
+$accent-light: #ede9fe;
+
+$font-sans: 'DM Sans', 'Segoe UI', sans-serif;
+
+// ─── Topbar Shell ─────────────────────────────────────────────────────────────
+.topbar {
+  height: $topbar-height;
+  min-height: $topbar-height;
+  background: $topbar-bg;
+  border-bottom: 1px solid $topbar-border;
+  padding: 0 28px;
+  font-family: $font-sans;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+// ─── Title ────────────────────────────────────────────────────────────────────
+.topbar__title {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.topbar__heading {
+  font-size: 17px;
+  font-weight: 700;
+  color: $text-primary;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.topbar__breadcrumb {
+  font-size: 12px;
+  color: $text-secondary;
+  font-weight: 400;
+}
+
+// ─── Right Controls ───────────────────────────────────────────────────────────
+.topbar__right {
+  flex-shrink: 0;
+}
+
+// ─── Search ───────────────────────────────────────────────────────────────────
+.topbar__search {
+  background: #f4f5f9;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 8px 14px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+
+  &:focus-within {
+    background: #fff;
+    border-color: $accent;
+  }
+}
+
+.topbar__search-icon {
+  color: $text-muted;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.topbar__search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13px;
+  color: $text-primary;
+  font-family: $font-sans;
+  width: 200px;
+
+  &::placeholder {
+    color: $text-muted;
+  }
+}
+
+// ─── Icon Buttons ─────────────────────────────────────────────────────────────
+.topbar__icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid $topbar-border;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  color: $text-secondary;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+
+  &:hover {
+    background: $accent-light;
+    border-color: $accent;
+    color: $accent;
+  }
+
+  &--logout {
+    border-color: #fde8e8;
+    color: #e05b5b;
+
+    &:hover {
+      background: #fff0f0;
+      border-color: #e05b5b;
+      color: darkred;
+    }
+  }
+}
+
+// ─── Notification Badge ───────────────────────────────────────────────────────
+.topbar__badge {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 8px;
+  height: 8px;
+  background: #ef4444;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+// ─── User ─────────────────────────────────────────────────────────────────────
+.topbar__user {
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 8px;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: #f4f5f9;
+    padding: 8px;
+  }
+}
+
+.topbar__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: $accent;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.topbar__avatar-initials {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  font-family: $font-sans;
+  letter-spacing: 0.02em;
+}
+
+.topbar__user-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: $text-primary;
+  line-height: 1.2;
+}
+
+.topbar__user-role {
+  font-size: 11px;
+  color: $text-secondary;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+// ─── Hamburger Button ─────────────────────────────────────────────────────────
+.topbar__hamburger {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: $text-secondary;
+  flex-shrink: 0;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+  /* &:hover {
+    background: $accent-light;
+    border-color: $accent;
+    color: $accent;
+  } */
+}

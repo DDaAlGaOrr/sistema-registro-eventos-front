@@ -1,0 +1,177 @@
+{
+  "TITLE": "Registro al Congreso FEJA 2026",
+  "SIDEBAR": {
+    "STEP1": "Datos personales",
+    "STEP2": "Contacto de emergencia",
+    "STEP3": "Resumen",
+    "STEP4": "Confirmación",
+    "STEP5": "Recibido"
+  },
+  "TOPBAR": {
+    "Completed": "¡Registro completado!",
+    "Of": "de"
+  },
+  "INFO": {
+    "TITLE": "Información general",
+    "EVENT": "Feja | Union Pacífico 2026",
+    "CARDS": {
+      "Card1": {
+        "Title": "Costo",
+        "Label": "Inscripción",
+        "Description": "¡El costo de la inscripción es totalmente gratuito!"
+      },
+      "Card2": {
+        "Title": "Ubicación",
+        "Label": "Del Congreso",
+        "Description": "Estaremos esperandoles en Phoenix, Arizona"
+      },
+      "Card3": {
+        "Title": "Fechas",
+        "Label": "Del Evento",
+        "Description": "¡Del viernes 16 al domingo 18 de Octubre del 2026!"
+      },
+      "Card4": {
+        "Title": "Chaperones",
+        "Label": "Límite",
+        "Description1": "1 para los chicos",
+        "Description2": "1 para las chicas"
+      },
+      "Card5": {
+        "Title": "Información",
+        "Label": "Actividades",
+        "Description": "https://congreso-union.fesjaz.com"
+      },
+      "Card6": {
+        "Title": "Contactos",
+        "Description": [
+          {
+            "Name": "Haley Armenta:",
+            "Phone": "520-312-8901"
+          },
+          {
+            "Name": "Adriana Aviles:",
+            "Phone": "520-450-9778"
+          }
+        ]
+      }
+    },
+    "EMAIL": "Email oficial: fesjarizona@gmail.com"
+  },
+  "STEP1": {
+    "TITLE1": "Detalles Personales",
+    "TITLE2": "Datos de Domicilio",
+    "TITLE3": "Detalles de Registro",
+    "FORM-INPUTS": {
+      "InputName": "Nombre",
+      "ValidationName": "El nombre es requerido.",
+      "InputLastName": "Apellido",
+      "ValidationLastName": "El apellido es requerido.",
+      "InputEmail": "Correo Electrónico",
+      "ValidationEmail": "Ingrese un correo válido.",
+      "InputPhone": "Teléfono",
+      "ValidationPhone": "El teléfono es requerido.",
+      "InputBirthDate": "Fecha de Nacimiento",
+      "ValidationBirthDate": "La fecha de nacimiento es requerida.",
+      "InputGender": "Género",
+      "OptionMasc":"Masculino",
+      "OptionFem":"Femenino",
+      "ValidationGender": "El género es requerido.",
+      "InputState": "Estado",
+      "ValidationState": "El estado es requerido.",
+      "InputConf": "Conferencia",
+      "ValidationConf": "La Conferencia es requerida.",
+      "InputCity": "Ciudad",
+      "ValidationCity": "La Ciudad es requerida.",
+      "InputChurch": "Iglesia donde asiste",
+      "ValidationChurch": "La Iglesia es requerida."
+    },
+    "FORM-CHECKS": {
+      "OPTIONS": {
+        "OptionNo": "No",
+        "OptionYes": "Sí"
+      },
+      "Q1": {
+        "Question1": "¿Deseas incluir el almuerzo?*",
+        "Question1b": "¿Tiene alguna preferencia alimentaria?",
+        "PreFood": "Preferencia Alimentaria",
+        "PreFoodValidation": "Por favor, selecciona una preferencia alimentaria.",
+        "Options": {
+          "OptionSelected": "Seleccione una opción",
+          "Option1": "Sin Preferencia",
+          "Option2": "Vegetariano",
+          "Option3": "Vegano",
+          "Option4": "Otra",
+          "Description": "Especifica tu alergia, restricción, preferencia o intolerancia",
+          "DescriptionValidation": "Por favor, describe cualquier alergia, alimento que no consumes o indicación especial."
+        }
+      },
+      "Q2": {
+        "Question2": "¿Quieres incluir la playera oficial del evento?*",
+        "OptionLabel": "Talla de playera",
+        "OptionValidation": "La talla de playera es requerida."
+      },
+      "Q3": "¿Serás chaperón de tu grupo de jóvenes?"
+    },
+    "Warning": "*Al incluir el almuerzo y/o playera oficial, debes llamar a tu conferencia correspondiente para realizar el pago. O bien, acércate con el director de jóvenes de tu iglesia para más información."
+  },
+  "STEP2": {
+    "TITLE1": "Información de contacto de emergencia",
+    "Subtitle": "Todos los asistentes deben completar esta sección.",
+    "Description": "Tu seguridad es muy importante para nosotros, así que asegúrate de llenar los datos de contacto de alguien que podamos localizar en caso de emergencia.",
+    "TITLE2": "Datos de Emergencia",
+    "FORM-INPUTS": {
+      "InputNameContact": "Nombre del Contacto",
+      "ValidationNameContact": "El nombre del contacto es requerido.",
+      "InputPhoneContact": "Número de Teléfono",
+      "ValidationPhoneContact": "El numero de teléfono del contacto es requerido.",
+      "Options": {
+        "OptSelected": "Relación con el Contacto",
+        "Option1": "Esposo(a)",
+        "Option2": "Padres",
+        "Option3": "Hermano(a)",
+        "Option4": "Familiar",
+        "Option5": "Amigo(a)",
+        "Option6": "Otro",
+        "ValidationOption": "La relación es requerida."
+      }
+    }
+  },
+  "STEP3": {
+    "TITLE": "Resumen del Registro",
+    "buttonEdit": "Editar Información",
+    "FullNameLabel": "Nombre Completo",
+    "AgeLabel": "Edad",
+    "YearsLabel": "Años",
+    "NotSpecified": "No especificado",
+    "Male": "Masculino",
+    "Female": "Femenino",
+    "SizeSmall": "Chica",
+    "SizeMedium": "Mediana",
+    "SizeLarge": "Grande",
+    "SizeExtraLarge": "Extra Grande"
+  },
+  "STEP4": {
+    "TITLE": "¡Registro Confirmado!",
+    "Description1": "Tu información ha sido verificada correctamente.",
+    "Description2": "Haz clic en ",
+    "FinishLabel": "finalizar ",
+    "Description2b": "para completar tu registro al congreso.",
+    "EmergencyLabel": "Emergencia",
+    "ButtonEndRegister": "Finalizar Registro",
+    "LocationLabel": "Locación",
+    "EmergencyContact": "Emergencia"
+  },
+  "STEP5": {
+    "TITLE": "¡Gracias",
+    "DefaultName": "Amigo(a)",
+    "Subtitle": "La Feja recibió tu registro exitosamente.",
+    "Description1": "Hemos enviado un correo a ",
+    "Description2": " con los detalles de tu registro",
+    "Badget": "Si no encuentras el correo en tu bandeja de entrada, revisa tu carpeta de spam o correo no deseado.",
+    "ButtonBack": "Regresar a Feja.com"
+  },
+  "FOOTER": {
+    "NEXT": "Siguiente",
+    "BACK": "Atrás"
+  }
+}

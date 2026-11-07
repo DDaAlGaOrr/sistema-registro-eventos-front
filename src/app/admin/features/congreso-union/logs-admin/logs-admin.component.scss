@@ -1,0 +1,217 @@
+:host {
+  --brand: #6C5DD3;
+  --brand-dark: #5b4bc4;
+  --brand-soft: rgba(108, 93, 211, .12);
+
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #1f2330;
+}
+
+.btn-brand {
+  background: #efc970;
+  border-color: #beab7e;
+  color: #fff;
+  font-weight: 500;
+
+  &:hover,
+  &:focus {
+        background: #f1cf7f;
+    border-color: #beab7e;
+    color: #fff;
+  }
+}
+
+::ng-deep .form-control:focus,
+::ng-deep .form-select:focus {
+  border-color: #dee2e6 !important;
+  box-shadow: none !important;
+}
+
+table {
+  thead tr th {
+    font-size: .72rem;
+    letter-spacing: .04em;
+    color: #8a8f98;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  tbody td {
+    font-size: .875rem;
+    vertical-align: middle;
+    /* white-space: pre-wrap; */
+    max-width: 300px;
+  }
+}
+
+.avatar-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: .78rem;
+  flex-shrink: 0;
+}
+
+.badge-soft-success {
+  background: #dcfce7;
+  color: #15803d;
+  font-weight: 600;
+}
+
+.badge-soft-secondary {
+  background: #ffe0074d;
+  color: #938307;
+  font-weight: 600;
+}
+
+.icon-action {
+  border: none;
+  background: transparent;
+  width: 32px;
+  height: 32px;
+  border-radius: .5rem;
+  color: #8a8f98;
+
+  &:hover {
+    background: #f4f3fc;
+  }
+
+  &.delete:hover {
+    background: #fdeceb;
+    color: #e0625b;
+  }
+}
+
+.pagination {
+  .page-link {
+    color: #1f2330;
+    border: none;
+    border-radius: 5px !important;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 2px;
+    padding: 0;
+
+    &:hover {
+      background: #f1f0fb;
+    }
+  }
+
+  .page-item.active .page-link {
+    background: transparent;
+    /* color: #fff; */
+    border: 1px solid #373737 !important;
+  }
+
+  .page-item.disabled .page-link {
+    color: #c9cbd3;
+    background: transparent;
+
+    &:hover {
+      background: transparent;
+    }
+  }
+}
+
+.page-link:focus {
+  all: unset;
+  cursor: pointer;
+}
+
+.empty-state td {
+  text-align: center;
+  color: #8a8f98;
+  padding: 2.5rem 0;
+}
+
+.delete-icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #fdeceb;
+  color: #e0625b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin: 0 auto;
+}
+
+// Placeholder base - gris medio, ni muy suave ni muy oscuro
+.placeholder {
+  background-color: #ced4da !important; // Bootstrap gray-400
+}
+
+.skeleton-avatar {
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  background-color: #adb5bd !important; // un poco más marcado para el avatar
+}
+
+.skeleton-badge {
+  height: 26px;
+  display: inline-block;
+  background-color: #ced4da !important;
+}
+
+.skeleton-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin-right: 8px;
+  background-color: #ced4da !important;
+}
+
+// ---------- Badges de acción (log) ----------
+.badge-log {
+  display: inline-flex;
+  align-items: center;
+  padding: .35rem .75rem;
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-right: 6px;
+    flex-shrink: 0;
+  }
+}
+
+.badge-log-warning {
+  background: #fdf3d8;
+  color: #a9791f;
+  .dot { background: #eab308; }
+}
+
+.badge-log-danger {
+  background: #fde2e2;
+  color: #d24b45;
+  .dot { background: #e0625b; }
+}
+
+.badge-log-success {
+  background: #dcfce7;
+  color: #15803d;
+  .dot { background: #22c55e; }
+}
+
+.badge-log-info {
+  background: #e0e7ff;
+  color: #4338ca;
+  .dot { background: #6366f1; }
+}

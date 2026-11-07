@@ -1,0 +1,81 @@
+<!-- ══ DESKTOP: Sidebar estático (visible ≥1024px) ══════════════════════════ -->
+<aside class="sidebar d-none d-xl-flex flex-column">
+  <ng-container *ngTemplateOutlet="sidebarContent"></ng-container>
+</aside>
+
+<!-- ══ MOBILE/TABLET: Offcanvas Bootstrap (<1024px) ═════════════════════════ -->
+<div class="offcanvas offcanvas-start d-xl-none" tabindex="-1" id="sidebarOffcanvas"
+  aria-labelledby="sidebarOffcanvasLabel">
+
+  <div class="offcanvas-header border-bottom px-3 py-3">
+    <div class="d-flex align-items-center gap-2">
+      <div class="d-flex align-items-center justify-content-center">
+        <img src="../../../../assets/images/logo_fesjaz.webp" width="80px" height="auto" alt="Logo icon" lazyload="lazy">
+      </div>
+      <!-- <span class="sidebar__brand-name" id="sidebarOffcanvasLabel">Feja Union</span> -->
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+  </div>
+
+  <div class="offcanvas-body p-0 d-flex flex-column">
+    <ng-container *ngTemplateOutlet="sidebarContent"></ng-container>
+  </div>
+
+</div>
+
+<!-- ══ TEMPLATE COMPARTIDO ═══════════════════════════════════════════════════ -->
+<ng-template #sidebarContent>
+
+  <!-- Brand (solo desktop, el offcanvas tiene su propio header) -->
+  <div class="sidebar__brand d-none d-xl-flex align-items-center gap-2">
+    <div class="">
+      <img src="../../../../assets/images/logo_fesjaz.webp" width="80px" height="auto" alt="Logo icon" lazyload="lazy">
+    </div>
+    <span class="sidebar__brand-name">Congreso<br>Feja 2026</span>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="sidebar__nav flex-grow-1">
+    <span class="sidebar__section-label mb-2">Eventos</span>
+
+    <ul class="sidebar__menu list-unstyled mb-0">
+      <li *ngFor="let item of navItems" class="sidebar__menu-item">
+        <ng-container *ngIf="item.children">
+          <button
+            class="sidebar__link sidebar__link--expandable w-100 d-flex align-items-center justify-content-between"
+            [class.sidebar__link--active]="item.expanded" (click)="toggleExpand(item)">
+            <div class="d-flex align-items-center gap-2">
+              <span class="sidebar__icon" [innerHTML]="getSportIcon(item.icon)"></span>
+              <span class="sidebar__link-label">{{ item.label }}</span>
+            </div>
+            <span class="sidebar__chevron" [class.sidebar__chevron--open]="item.expanded">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </span>
+          </button>
+
+          <ul class="sidebar__submenu list-unstyled mb-0" [class.sidebar__submenu--open]="item.expanded">
+            <li *ngFor="let child of item.children">
+              <a class="sidebar__sublink" [routerLink]="[child.route]" routerLinkActive="sidebar__sublink--active"
+                data-bs-dismiss="offcanvas">
+                {{ child.label }}
+              </a>
+            </li>
+          </ul>
+        </ng-container>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Footer -->
+  <!-- <div class="sidebar__footer">
+    <a class="sidebar__link d-flex align-items-center gap-2" routerLink="/settings" data-bs-dismiss="offcanvas">
+      <span class="sidebar__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 512 512"><path fill="none" stroke="##8C8EA6" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M262.29 192.31a64 64 0 1 0 57.4 57.4a64.13 64.13 0 0 0-57.4-57.4M416.39 256a154 154 0 0 1-1.53 20.79l45.21 35.46a10.81 10.81 0 0 1 2.45 13.75l-42.77 74a10.81 10.81 0 0 1-13.14 4.59l-44.9-18.08a16.11 16.11 0 0 0-15.17 1.75A164.5 164.5 0 0 1 325 400.8a15.94 15.94 0 0 0-8.82 12.14l-6.73 47.89a11.08 11.08 0 0 1-10.68 9.17h-85.54a11.11 11.11 0 0 1-10.69-8.87l-6.72-47.82a16.07 16.07 0 0 0-9-12.22a155 155 0 0 1-21.46-12.57a16 16 0 0 0-15.11-1.71l-44.89 18.07a10.81 10.81 0 0 1-13.14-4.58l-42.77-74a10.8 10.8 0 0 1 2.45-13.75l38.21-30a16.05 16.05 0 0 0 6-14.08c-.36-4.17-.58-8.33-.58-12.5s.21-8.27.58-12.35a16 16 0 0 0-6.07-13.94l-38.19-30A10.81 10.81 0 0 1 49.48 186l42.77-74a10.81 10.81 0 0 1 13.14-4.59l44.9 18.08a16.11 16.11 0 0 0 15.17-1.75A164.5 164.5 0 0 1 187 111.2a15.94 15.94 0 0 0 8.82-12.14l6.73-47.89A11.08 11.08 0 0 1 213.23 42h85.54a11.11 11.11 0 0 1 10.69 8.87l6.72 47.82a16.07 16.07 0 0 0 9 12.22a155 155 0 0 1 21.46 12.57a16 16 0 0 0 15.11 1.71l44.89-18.07a10.81 10.81 0 0 1 13.14 4.58l42.77 74a10.8 10.8 0 0 1-2.45 13.75l-38.21 30a16.05 16.05 0 0 0-6.05 14.08c.33 4.14.55 8.3.55 12.47"/></svg>
+      </span>
+      <span class="sidebar__link-label" style="font-weight: 600 !important;">Settings</span>
+    </a>
+  </div> -->
+
+</ng-template>

@@ -1,0 +1,453 @@
+<div class="container-fluid py-4" style="max-width: 1180px">
+  <div
+    class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4"
+  >
+    <div>
+      <h1 class="h4 fw-bold mb-1">Participantes Registrados</h1>
+      <p class="text-secondary small mb-0">
+        Registrar, actualizar y borrar participantes
+      </p>
+    </div>
+    @if (authUser.role !== "vicePresident") {
+      <div>
+        <button
+          class="btn btn-brand-primary"
+          type="button"
+          (click)="exportPdf()"
+        >
+          Exportar Lista
+        </button>
+      </div>
+    }
+  </div>
+
+  <div class="card border-0 shadow-sm rounded-4 p-3 p-md-4">
+    <!-- Filtros -->
+    <div class="row g-2 mb-3">
+      <!-- Búsqueda -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="input-group">
+          <span class="input-group-text bg-white border-end-0">
+            <img
+              src="../../../../../assets/icons/registered/search.svg"
+              alt="Find Icon"
+              style="width: 15px"
+            />
+          </span>
+          <input
+            type="text"
+            class="form-control border-start-0 ps-0"
+            placeholder="Buscar por nombre, teléfono o correo..."
+            [(ngModel)]="busqueda"
+            (ngModelChange)="onBusquedaChange()"
+          />
+        </div>
+      </div>
+
+      <!-- Filtro: Iglesia (NUEVO) -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <select
+          class="form-select"
+          [(ngModel)]="filtroIglesia"
+          (ngModelChange)="onIglesiaChange()"
+        >
+          <option value="">Todas las iglesias</option>
+          <option *ngFor="let iglesia of iglesiasVisibles" [value]="iglesia">
+            {{ iglesia }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Filtro: Conferencia -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <select
+          class="form-select"
+          [(ngModel)]="filtroConferencia"
+          (ngModelChange)="onConferenciaChange()"
+        >
+          <option value="">Todas las conferencias</option>
+          <option
+            *ngFor="let conferencia of conferenciasVisibles"
+            [value]="conferencia"
+          >
+            {{ conferencia }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Filtro: Check-in -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <select
+          class="form-select"
+          [(ngModel)]="filtroCheckin"
+          (ngModelChange)="onFiltroChange()"
+        >
+          <option value="">Todos los check-in</option>
+          <option value="Completado">Completado</option>
+          <option value="Pendiente">Pendiente</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Tabla -->
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead>
+          <tr class="text-uppercase">
+            <th>Noº</th>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Iglesia</th>
+            <th>Conferencia</th>
+            <th>Check-in</th>
+            <th>Registro</th>
+            @if (
+              authUser.role !== "admin" && authUser.role !== "vicePresident"
+            ) {
+              <th>Acciones</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          <!-- ===== SKELETON mientras carga ===== -->
+          <ng-container *ngIf="cargando; else contenidoReal">
+            <tr *ngFor="let i of skeletonRows" class="placeholder-glow">
+              <td class="col">
+                <span class="placeholder col-3" style="height: 14px"></span>
+              </td>
+              <td class="col-3">
+                <div class="d-flex align-items-center gap-2">
+                  <span
+                    class="placeholder rounded-circle skeleton-avatar"
+                  ></span>
+                  <span class="placeholder col-8" style="height: 14px"></span>
+                </div>
+              </td>
+              <td class="col-2">
+                <span class="placeholder col-8" style="height: 14px"></span>
+              </td>
+              <td class="col-2">
+                <span class="placeholder col-9" style="height: 14px"></span>
+              </td>
+              <td class="col-1">
+                <span class="placeholder col-8" style="height: 14px"></span>
+              </td>
+              <td class="col-1">
+                <span
+                  class="placeholder rounded-pill col-10 skeleton-badge"
+                ></span>
+              </td>
+              <td class="col-1">
+                <span class="placeholder col-8" style="height: 14px"></span>
+              </td>
+              <td>
+                <div class="d-flex gap-2">
+                  <span class="placeholder skeleton-icon"></span>
+                  <span class="placeholder skeleton-icon"></span>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+
+          <!-- ===== CONTENIDO REAL ===== -->
+          <ng-template #contenidoReal>
+            <tr *ngIf="participantesPagina.length === 0" class="empty-state">
+              <td colspan="8">
+                No se encontraron participantes con esos filtros.
+              </td>
+            </tr>
+            <tr *ngFor="let p of participantesPagina; let i = index">
+              <!-- <td>{{ p.id }}</td> -->
+              <td>{{ i + 1 }}</td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <span
+                    class="avatar-circle"
+                    [style.background]="colorAvatar(p.nombre)"
+                    >{{ inicial(p.nombre) }}</span
+                  >
+                  <span class="fw-medium"
+                    >{{ p.nombre }} {{ p.apellidos }}</span
+                  >
+                </div>
+              </td>
+              <td>{{ p.telefono }}</td>
+              <td>{{ p.iglesia }}</td>
+              <td>
+                <span
+                  class="d-inline-flex align-items-center gap-1 text-secondary"
+                >
+                  <i class="bi bi-envelope"></i>{{ p.conferencia }}
+                </span>
+              </td>
+              <td>
+                <span
+                  class="badge rounded-pill px-3 py-2"
+                  [ngClass]="
+                    p.checkin_at ? 'badge-soft-success' : 'badge-soft-secondary'
+                  "
+                >
+                  <i
+                    class="bi"
+                    [ngClass]="
+                      p.checkin_at ? 'bi-check-circle-fill' : 'bi-clock-fill'
+                    "
+                  ></i>
+                  {{ p.checkin_at ? "Completado" : "Pendiente" }}
+                </span>
+              </td>
+              <td>{{ isoADdmmyyyy(p.created_at) }}</td>
+              <td>
+                @if (
+                  authUser.role !== "admin" && authUser.role !== "vicePresident"
+                ) {
+                  <button
+                    class="icon-action edit-btn"
+                    title="Editar"
+                    (click)="abrirModalEditar(p)"
+                  >
+                    <img
+                      src="../../../../../assets/icons/registered/edit.svg"
+                      alt="Edit Icon"
+                      style="width: 16px"
+                    />
+                  </button>
+                }
+                @if (
+                  authUser.role !== "finanzas" &&
+                  authUser.role !== "admin" &&
+                  authUser.role !== "vicePresident"
+                ) {
+                  <button
+                    class="icon-action delete"
+                    title="Eliminar"
+                    (click)="abrirModalEliminar(p)"
+                  >
+                    <img
+                      src="../../../../../assets/icons/registered/delete.svg"
+                      alt="Delete Icon"
+                      style="width: 16px"
+                    />
+                  </button>
+                }
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer: total + paginación -->
+    <div
+      class="d-flex justify-content-between align-items-center flex-wrap gap-3 mt-3 pt-2"
+    >
+      <div class="text-secondary small">
+        Total encontrados: {{ participantesFiltrados.length }}
+      </div>
+      <ul class="pagination mb-0">
+        <li class="page-item" [class.disabled]="paginaActual === 1">
+          <button class="page-link" (click)="anterior()">
+            <img
+              src="../../../../../assets/icons/registered/chevron-left.svg"
+            />
+          </button>
+        </li>
+        <li
+          *ngFor="let p of rangoPaginas"
+          class="page-item"
+          [class.disabled]="p === '...'"
+          [class.active]="p === paginaActual"
+        >
+          <button *ngIf="p !== '...'" class="page-link" (click)="irAPagina(p)">
+            {{ p }}
+          </button>
+          <span *ngIf="p === '...'" class="page-link border-0 bg-transparent"
+            >…</span
+          >
+        </li>
+        <li class="page-item" [class.disabled]="paginaActual === totalPaginas">
+          <button class="page-link" (click)="siguiente()">
+            <img
+              src="../../../../../assets/icons/registered/chevron-right.svg"
+            />
+          </button>
+        </li>
+      </ul>
+      <div class="d-flex align-items-center gap-3 flex-wrap">
+        <div class="d-flex align-items-center gap-2 text-secondary small">
+          <span>Mostrar por página</span>
+          <select
+            class="form-select form-select-sm"
+            style="width: auto"
+            [(ngModel)]="porPagina"
+            (ngModelChange)="onPorPaginaChange()"
+          >
+            <option *ngFor="let opcion of opcionesPorPagina" [ngValue]="opcion">
+              {{ opcion }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Crear / Editar participante -->
+<div class="modal fade" id="participantModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4">
+      <div class="modal-header border-0 pb-0">
+        <h5 class="modal-title fw-bold">
+          {{
+            editandoId !== null
+              ? "Editar Participante"
+              : "Registrar Participante"
+          }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" novalidate>
+          <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="nombre"
+              [class.is-invalid]="
+                form.get('nombre')?.invalid && form.get('nombre')?.touched
+              "
+            />
+            <label class="form-label">Apellidos</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="apellidos"
+              [class.is-invalid]="
+                form.get('apellidos')?.invalid && form.get('apellidos')?.touched
+              "
+            />
+
+            <label class="form-label">Preferencia alimento</label>
+            <select class="form-select" formControlName="tipo_alimento">
+              <option value="normal">No aplica</option>
+              <option value="vegetariano">vegetariano</option>
+              <option value="vegano">vegano</option>
+              <option value="otra">otra</option>
+            </select>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Estado</label>
+              <select class="form-select" formControlName="estado_id">
+                @for (state of states(); track state.id) {
+                  <option [value]="state.id">{{ state.nombre }}</option>
+                } @empty {
+                  <option disabled>Cargando estados...</option>
+                }
+              </select>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Conferencia</label>
+              <select class="form-select" formControlName="conferencia_id">
+                <option selected disabled>Conferencia</option>
+                @for (conference of conferences(); track conference.id) {
+                  <option [value]="conference.id">
+                    {{ conference.nombre }}
+                  </option>
+                } @empty {
+                  <option disabled>Cargando conferencias...</option>
+                }
+              </select>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">ciudad</label>
+              <input
+                type="text"
+                class="form-control"
+                id="ciudad"
+                list="ciudadesList"
+                placeholder="ciudad"
+                formControlName="ciudad"
+                [class.is-invalid]="
+                  form.get('ciudad')?.invalid && form.get('ciudad')?.touched
+                "
+              />
+
+              <datalist id="ciudadesList">
+                @for (city of cities(); track city) {
+                  <option [value]="city"></option>
+                }
+              </datalist>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Camiseta</label>
+              <select class="form-select" formControlName="pago_camiseta">
+                <option value="pagado">Pagado</option>
+                <option value="pendiente">Pendiente</option>
+                <option value="no_aplica">No aplica</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Talla</label>
+              <select class="form-select" formControlName="talla_camiseta_id">
+                @for (size of sizes(); track size.id) {
+                  <option [value]="size.id">
+                    {{ size.talla }}
+                  </option>
+                } @empty {
+                  <option disabled>Cargando tallas...</option>
+                }
+              </select>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">Comida</label>
+              <select class="form-select" formControlName="pago_lunchtime">
+                <option value="pagado">Pagado</option>
+                <option value="pendiente">Pendiente</option>
+                <option value="no_aplica">No aplica</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer border-0">
+        <button class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-brand" (click)="guardar()">
+          Guardar cambios
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Confirmar eliminación -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4">
+      <div class="modal-body text-center p-4">
+        <div class="delete-icon-wrap mb-3"><i class="bi bi-trash3"></i></div>
+        <h5 class="fw-bold mb-2">¿Eliminar participante?</h5>
+        <p class="text-secondary mb-4">
+          Esta acción no se puede deshacer. Se eliminará a
+          <strong>{{ participanteAEliminar?.nombre }}</strong> de la lista.
+        </p>
+        <div class="d-flex justify-content-center gap-2">
+          <button class="btn btn-light px-4" data-bs-dismiss="modal">
+            Cancelar
+          </button>
+          <button class="btn btn-danger px-4" (click)="confirmarEliminar()">
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

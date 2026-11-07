@@ -1,0 +1,31 @@
+<div class="registration-container p-0 p-lg-5 d-flex flex-column flex-lg-row justify-content-between align-items-lg-start align-items-center gap-4">
+  <aside class="sidebar col-12 col-md-4  d-none d-lg-flex flex-column align-items-center justify-content-center p-0">
+    <div class="w-100 ms-5 mt-4 d-flex flex-row align-items-start gap-2 justify-content-start">
+      <button (click)="languageService.toggleLanguage()" class="lang-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path fill="none" stroke="#252525" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 5h14M9 2v3m4 0q-2 8-9 11m2-7q2 4 6 6m1 7l5-11l5 11m-1.37-3h-7.26" />
+        </svg>
+        <span>|</span>
+        {{ languageService.currentLang() === 'es' ? 'EN' : 'ES' }}
+      </button>
+    </div>
+    <app-stepper-sidebar [currentStep]="activeStep"></app-stepper-sidebar>
+  </aside>
+
+  <section class="sidebar-mobile col-12 d-flex d-lg-none align-items-center justify-content-center p-0">
+    <app-topbar-mobile class="col-11 col-md-10" [currentStep]="activeStep" [totalSteps]="totalSteps"></app-topbar-mobile>
+  </section>
+
+  <main class="content-area col-12 col-md-10 col-lg-8">
+    <router-outlet></router-outlet>
+    <div class="stepper-container" *ngIf="activeStep < 4">
+  <app-footer-bar
+    [isFirstStep]="activeStep === 0"
+    [isCurrentStepValid]="isCurrentStepValid"
+    (next)="avanzarPaso()"
+    (previous)="retrocederPaso()">
+    </app-footer-bar>
+</div>
+  </main>
+</div>

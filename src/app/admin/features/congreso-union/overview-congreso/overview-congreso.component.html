@@ -1,0 +1,274 @@
+<div class="dashboard-wrapper">
+  <!-- Header -->
+  <div class="mb-4">
+    <h4 class="dashboard-title mb-1">Resumen de Registro</h4>
+    <p class="dashboard-subtitle mb-0">
+      Vista general de información de registros
+    </p>
+  </div>
+
+  <!-- Stat Cards -->
+  <div class="row g-3 mb-4">
+    <!-- ===== SKELETON mientras carga ===== -->
+    <ng-container *ngIf="cargandoStats; else statsReal">
+      <div class="col-6 col-lg-3" *ngFor="let i of skeletonCards">
+        <div class="stat-card h-100 placeholder-glow">
+          <div class="stat-icon mb-2">
+            <span class="placeholder skeleton-stat-icon"></span>
+          </div>
+          <p class="stat-label mb-1">
+            <span class="placeholder col-7" style="height: 12px"></span>
+          </p>
+          <h3 class="stat-value mb-0">
+            <span class="placeholder col-5" style="height: 20px"></span>
+          </h3>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- ===== CONTENIDO REAL ===== -->
+    <ng-template #statsReal>
+      <div class="col-6 col-lg-3" *ngFor="let card of statsList">
+        <div class="stat-card h-100">
+          <div class="stat-icon mb-2">
+            <img
+              src="{{ baseUrlIcon + card.icon }}"
+              style="width: 25px; filter: hue-rotate(144deg)"
+            />
+          </div>
+          <p class="stat-label mb-1">{{ card.label }}</p>
+          <h3 class="stat-value mb-0">{{ card.value }}</h3>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+
+  <!-- <div>
+    <img src="assets/icons/admin/conferences-svg/arizona.svg" alt="Az svg">
+  </div> -->
+
+  <div
+    class="d-flex flex-column flex-lg-row align-items-center align-items-lg-start justify-content-between gap-3 gap-lg-4 my-5"
+  >
+  <div class="d-flex flex-column gap-4 col-12 col-lg">
+    <div class="col-12">
+      <div class="panel h-100 rounded-4">
+        <h6 class="panel-title mb-4">Conferencias</h6>
+
+        <div class="overflow-clip" style="height: 100%;">
+          <div class="activity-table-header d-none d-md-flex">
+            <span class="col-header">ICON</span>
+            <span class="col-header">CONFERENCIA</span>
+            <span class="col-header">INSCRITOS</span>
+            <!-- <span class="col-header">FECHA REGISTRO</span> -->
+          </div>
+
+          <!-- ESTADO: CARGANDO -->
+          <ng-container *ngIf="cargandoActivities; else conferencias">
+            <div class="activity-row placeholder-glow" *ngFor="let skeleton of skeletonTable">
+              <div class="activity-cell activity-usuario">
+                <span class="mobile-label d-md-none">ICON</span>
+                <span class="placeholder col-8"></span>
+              </div>
+              <div class="activity-cell activity-contacto">
+                <span class="mobile-label d-md-none">CONFERENCIA</span>
+                <span class="placeholder col-7"></span>
+              </div>
+              <div class="activity-cell activity-checkin">
+                <span class="mobile-label d-md-none"></span>
+                <span class="status-badge placeholder col-5"></span>
+              </div>
+            </div>
+          </ng-container>
+
+          <!-- ESTADO: CONTENIDO REAL -->
+          <ng-template #conferencias>
+            <div class="activity-row d-flex flex-row align-items-center justify-content-between" *ngFor="let conference of conferencesRegistered">
+              <div class="activity-cell activity-usuario">
+                <!-- <img src="assets/icons/admin/conferences-svg/arizona.svg" alt="Arizona" style="width: 150px;"> -->
+                <img [src]="obtenerLogoConferencia(conference.nombre)" [alt]="conference.nombre" class="conference-logo">
+              </div>
+              <div class="activity-cell activity-contacto">
+                {{ conference.nombre }}
+              </div>
+              <div class="activity-cell activity-checkin">
+                {{ conference.usuariosRegistrados }}
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="panel h-100 rounded-4">
+        <h6 class="panel-title mb-4">Actividad reciente</h6>
+
+        <div class="overflow-clip">
+          <div class="activity-table-header d-none d-md-flex">
+            <span class="col-header">NOMBRE</span>
+            <span class="col-header">CONFERENCIA</span>
+            <span class="col-header">CORREO</span>
+            <span class="col-header">FECHA REGISTRO</span>
+          </div>
+
+          <!-- ESTADO: CARGANDO -->
+          <ng-container *ngIf="cargandoActivities; else contenidoReal">
+            <div class="activity-row placeholder-glow" *ngFor="let skeleton of skeletonTable">
+              <div class="activity-cell activity-usuario">
+                <span class="mobile-label d-md-none">NOMBRE</span>
+                <span class="placeholder col-8"></span>
+              </div>
+              <div class="activity-cell activity-contacto">
+                <span class="mobile-label d-md-none">CONFERENCIA</span>
+                <span class="placeholder col-7"></span>
+              </div>
+              <div class="activity-cell activity-fecha">
+                <span class="mobile-label d-md-none">CORREO</span>
+                <span class="placeholder col-9"></span>
+              </div>
+              <div class="activity-cell activity-checkin">
+                <span class="mobile-label d-md-none">FECHA REGISTRO</span>
+                <span class="status-badge placeholder col-5"></span>
+              </div>
+            </div>
+          </ng-container>
+
+          <!-- ESTADO: CONTENIDO REAL -->
+          <ng-template #contenidoReal>
+            <div class="activity-row" *ngFor="let item of activitiesList">
+              <div class="activity-cell activity-usuario">
+                <span class="mobile-label d-md-none">NOMBRE</span>
+                {{ item.nombre }} {{ item.apellidos }}
+              </div>
+              <div class="activity-cell activity-contacto">
+                <span class="mobile-label d-md-none">CONFERENCIA</span>
+                {{ item.conferencia }}
+              </div>
+              <div class="activity-cell activity-fecha">
+                <span class="mobile-label d-md-none">CORREO</span>
+                {{ item.correo }}
+              </div>
+              <div class="activity-cell activity-checkin">
+                <span class="mobile-label d-md-none">FECHA REGISTRO</span>
+                <span class="status-badge">
+                  {{ calcularTiempoTranscurrido(item.created_at) }}
+                </span>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div
+      class="d-flex flex-column flex-md-row flex-lg-column align-items-stretch justify-content-center gap-1 gap-md-3 gap-lg-4 col-md-12 col-lg"
+    >
+      <div
+        class="d-flex flex-column flex-lg-row align-items-stretch justify-content-center gap-1 col-12 col-md-6 col-lg-12 card border-0 shadow-sm rounded-4 p-3"
+      >
+        <div id="chart-spark3" class="col-md-12 col-lg-6 d-flex align-items-center justify-content-center">
+          <apx-chart
+            [series]="chartOptions3.series!"
+            [chart]="chartOptions3.chart!"
+            [stroke]="chartOptions3.stroke!"
+            [fill]="chartOptions3.fill!"
+            [xaxis]="chartOptions3.xaxis!"
+            [yaxis]="chartOptions3.yaxis!"
+            [title]="chartOptions3.title!"
+            [subtitle]="chartOptions3.subtitle!"
+          ></apx-chart>
+        </div>
+        <div id="chart-tshirts" class="col-md-12 col-lg d-flex align-items-center justify-content-center">
+          <apx-chart
+            [series]="chartOptionsTshirts.series!"
+            [chart]="chartOptionsTshirts.chart!"
+            [fill]="chartOptionsTshirts.fill!"
+            [plotOptions]="chartOptionsTshirts.plotOptions!"
+            [labels]="chartOptionsTshirts.labels!"
+          ></apx-chart>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-12 card shadow-sm border-0 p-3 rounded-4 align-items-stretch justify-content-center">
+        <div id="chart" class="d-flex align-items-center justify-content-center">
+          <apx-chart
+            class="w-100"
+            [series]="chartOptions.series!"
+            [chart]="chartOptions.chart!"
+            [plotOptions]="chartOptions.plotOptions!"
+            [dataLabels]="chartOptions.dataLabels!"
+            [stroke]="chartOptions.stroke!"
+            [xaxis]="chartOptions.xaxis!"
+            [yaxis]="chartOptions.yaxis!"
+            [fill]="chartOptions.fill!"
+            [tooltip]="chartOptions.tooltip!"
+          ></apx-chart>
+        </div>
+        <!-- <div class="col">
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom Section -->
+<!-- <div class="row g-3">
+
+    <div class="col-12 col-lg-7">
+      <div class="panel h-100 rounded-4">
+        <h6 class="panel-title mb-4">Actividad reciente</h6>
+
+        <div class="overflow-clip">
+        <div class="activity-table-header d-none d-md-flex">
+          <span class="col-header">USUARIO</span>
+          <span class="col-header">CONTACTO</span>
+          <span class="col-header">FECHA</span>
+          <span class="col-header">CHECK-IN</span>
+        </div>
+
+          <div class="activity-row" *ngFor="let item of activitiesList">
+            <div class="activity-cell activity-usuario">
+              <span class="mobile-label d-md-none">USUARIO</span>
+              {{ item.usuario }}
+            </div>
+            <div class="activity-cell activity-contacto">
+              <span class="mobile-label d-md-none">CONTACTO</span>
+              {{ item.contacto }}
+            </div>
+            <div class="activity-cell activity-fecha">
+              <span class="mobile-label d-md-none">FECHA</span>
+              {{ item.fecha }}
+            </div>
+            <div class="activity-cell activity-checkin">
+              <span class="mobile-label d-md-none">CHECK-IN</span>
+              <span class="status-badge" [ngClass]="getBadgeClass(item.checkIn)">
+                {{ item.checkIn }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-5">
+      <div class="panel h-100 d-flex flex-column align-items-stretch justify-content-start gap-3 rounded-4">
+        <h6 class="panel-title m-0">Equipo Staff registrado</h6>
+        <hr>
+        <div class="overflow-clip d-flex flex-column gap-3">
+          <div class="staff-row" *ngFor="let staff of staffList">
+            <div class="staff-avatar">{{ staff.initials }}</div>
+            <div class="staff-info flex-grow-1">
+              <p class="staff-name mb-0">{{ staff.nombre }}</p>
+              <p class="staff-cargo mb-0">{{ staff.cargo }}</p>
+            </div>
+            <span class="status-badge badge-completed">{{ staff.estado }}</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div> -->

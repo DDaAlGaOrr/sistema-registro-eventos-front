@@ -1,0 +1,250 @@
+// ─── Variables ────────────────────────────────────────────────────────────────
+$sidebar-width: 220px;
+$sidebar-bg: #ffffff;
+$sidebar-border: #e8eaf0;
+
+$text-primary: #1a1d2e;
+$text-secondary: #8b8fa8;
+$text-muted: #b0b3c6;
+
+$accent: #4f46e5;
+$accent-light: #ede9fe;
+$accent-hover: #f5f3ff;
+
+$font-sans: 'DM Sans', 'Segoe UI', sans-serif;
+
+// ─── Sidebar Shell ────────────────────────────────────────────────────────────
+.sidebar {
+  width: $sidebar-width;
+  min-width: $sidebar-width;
+  height: 100vh;
+  background: $sidebar-bg;
+  border-right: 1px solid $sidebar-border;
+  padding: 0;
+  font-family: $font-sans;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+// ─── Brand ────────────────────────────────────────────────────────────────────
+.sidebar__brand {
+  padding: 20px 18px 16px;
+  border-bottom: 1px solid $sidebar-border;
+  margin-bottom: 8px;
+
+  &-icon {
+    width: 30px;
+    height: 30px;
+    background: $accent;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  &-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: $text-primary;
+    letter-spacing: -0.02em;
+  }
+}
+
+// ─── Section Label ────────────────────────────────────────────────────────────
+.sidebar__section-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: $text-muted;
+  padding: 12px 18px 6px;
+  text-transform: uppercase;
+}
+
+span.sidebar__link-label {
+  font-size: 15px;
+}
+
+// ─── Navigation ───────────────────────────────────────────────────────────────
+.sidebar__nav {
+  padding: 0 8px;
+}
+
+.sidebar__menu {
+  padding: 0;
+}
+
+.sidebar__menu-item {
+  margin-bottom: 2px;
+}
+
+// ─── Links ────────────────────────────────────────────────────────────────────
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  color: $text-secondary;
+  font-size: 13.5px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+
+  &:hover {
+    background: $accent-hover;
+    color: $accent;
+
+    .sidebar__icon svg {
+      stroke: $accent;
+    }
+  }
+
+  &--active {
+    color: $accent;
+    background: transparent;
+
+    .sidebar__icon svg {
+      stroke: $accent;
+    }
+  }
+
+  &--expandable {
+    text-align: left;
+  }
+}
+
+// ─── Icon ─────────────────────────────────────────────────────────────────────
+.sidebar__icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  svg {
+    stroke: $text-secondary;
+    transition: stroke 0.15s ease;
+  }
+}
+
+// ─── Chevron ──────────────────────────────────────────────────────────────────
+.sidebar__chevron {
+  display: flex;
+  align-items: center;
+  color: $text-muted;
+  transition: transform 0.2s ease;
+
+  &--open {
+    transform: rotate(90deg);
+  }
+}
+
+// ─── Link Label ───────────────────────────────────────────────────────────────
+.sidebar__link-label {
+  flex: 1;
+  font-weight: 700;
+}
+
+// ─── Sub-menu ─────────────────────────────────────────────────────────────────
+.sidebar__submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+  padding-left: 30px;
+
+  &--open {
+    max-height: 300px;
+  }
+}
+
+.sidebar__sublink {
+  display: block;
+  padding: 7px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: $text-secondary;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background: $accent-hover;
+    color: $accent;
+  }
+
+  &--active {
+    color: $accent;
+    background: $accent-hover;
+    font-weight: 600;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 35px;
+      background: $accent;
+      border-radius: 2px;
+    }
+  }
+}
+
+// ─── Footer ───────────────────────────────────────────────────────────────────
+.sidebar__footer {
+  padding: 12px 8px 16px;
+  border-top: 1px solid $sidebar-border;
+  margin-top: auto;
+
+  .sidebar__link {
+    color: $text-secondary;
+
+    &:hover {
+      color: $accent;
+      background: $accent-hover;
+    }
+  }
+}
+
+// ─── Offcanvas overrides ──────────────────────────────────────────────────────
+.offcanvas {
+  width: $sidebar-width !important;
+  font-family: $font-sans;
+
+  .offcanvas-header {
+    .sidebar__brand-icon {
+      width: 30px;
+      height: 30px;
+      background: $accent;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .sidebar__brand-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: $text-primary;
+      letter-spacing: -0.02em;
+    }
+  }
+
+  .offcanvas-body {
+    padding: 0;
+    overflow-x: hidden;
+  }
+}

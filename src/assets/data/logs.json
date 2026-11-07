@@ -1,0 +1,11 @@
+[
+  { "id": 1, "admin": "Davion Chung", "accion": "CHECK_IN", "registro_afectado": "id_12", "detalles": "{nombre_eliminado: \"prueba editar\"}", "fecha_hora": "2026-08-20T10:00:00" },
+  { "id": 2, "admin": "Terri Floyd", "accion": "UPDATE_REGISTER", "registro_afectado": "id_14", "detalles": "{nombre: \"prueba editar\"}", "fecha_hora": "2026-08-26T09:15:00" },
+  { "id": 3, "admin": "Elnora Johnson", "accion": "CHECK_IN", "registro_afectado": "id_03", "detalles": "{nombre_eliminado: \"prueba editar\"}", "fecha_hora": "2026-09-14T11:30:00" },
+  { "id": 4, "admin": "Matt Ponce", "accion": "DELETE_REGISTER", "registro_afectado": "id_20", "detalles": "{pago_camiseta: \"pagado\", \"incluir_camiseta\": 1, \"pago_lunchtime\": \"pagado\", \"incluir_lunchtime\": 1}", "fecha_hora": "2026-08-16T14:20:00" },
+  { "id": 5, "admin": "Avianna Phelps", "accion": "DELETE_REGISTER", "registro_afectado": "id_09", "detalles": "{nombre: \"prueba editar\"}", "fecha_hora": "2026-07-20T08:45:00" },
+  { "id": 6, "admin": "Kenia O'Neill", "accion": "CHECK_IN", "registro_afectado": "id_15", "detalles": "{nombre: \"prueba editar\"}", "fecha_hora": "2026-08-26T16:10:00" },
+  { "id": 7, "admin": "Lessie Knapp", "accion": "UPDATE_REGISTER", "registro_afectado": "id_16", "detalles": null, "fecha_hora": "2026-07-02T13:05:00" },
+  { "id": 8, "admin": "Ada Harvey", "accion": "CHECK_IN", "registro_afectado": "id_20", "detalles": "{pago_camiseta: \"pagado\", \"incluir_camiseta\": 1, \"pago_lunchtime\": \"pagado\", \"incluir_lunchtime\": 1}", "fecha_hora": "2026-07-10T09:00:00" },
+  { "id": 9, "admin": "Omar Cantrell", "accion": "UPDATE_REGISTER", "registro_afectado": "id_10", "detalles": null, "fecha_hora": "2026-09-28T12:40:00" }
+]

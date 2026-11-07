@@ -1,0 +1,13 @@
+<div class="stepper-footer mb-5 mb-lg-0">
+  <button type="button" class="btn-step btn-prev" [disabled]="isFirstStep" (click)="onPrevious()"
+    aria-label="Paso anterior">
+    <span class="arrow-icon left"></span>
+    <span class="btn-text d-md-block d-lg-none text-white">{{ 'FOOTER.BACK' | translate }}</span>
+  </button>
+
+  <button type="button" class="btn-step btn-next" [disabled]="!isCurrentStepValid" (click)="onNext()"
+    aria-label="Siguiente paso">
+    <span class="btn-text d-md-block d-lg-none text-white">{{ 'FOOTER.NEXT' | translate }}</span>
+    <span class="arrow-icon right"></span>
+  </button>
+</div>

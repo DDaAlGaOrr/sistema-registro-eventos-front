@@ -1,0 +1,60 @@
+{
+  "stats": [
+    { "icon": "registered.svg", "label": "Total Registrados", "value": 650 },
+    { "icon": "check-ed.svg", "label": "Check-in Realizados", "value": 20 },
+    { "icon": "shirts.svg", "label": "Camisetas Pagadas", "value": 16 },
+    { "icon": "lunch.svg", "label": "Comidas pagadas", "value": 582 }
+  ],
+  "activities": [
+    {
+      "usuario": "Edgar Valentino",
+      "contacto": "Alexis Murray",
+      "fecha": "Hace 10 min",
+      "checkIn": "Completado"
+    },
+    {
+      "usuario": "Chris Padilla",
+      "contacto": "Selene Miller",
+      "fecha": "Hace 1 hora",
+      "checkIn": "In Progress"
+    },
+    {
+      "usuario": "Mary Zamora",
+      "contacto": "Ivan Michael",
+      "fecha": "Hace 2 horas",
+      "checkIn": "Registered"
+    },
+    {
+      "usuario": "Omar Mendoza",
+      "contacto": "Elsa Campos",
+      "fecha": "Ayer",
+      "checkIn": "Completado"
+    }
+  ],
+  "staff": [
+    {
+      "nombre": "Elizabeth Coss",
+      "cargo": "Vice-Presidente Phoenix",
+      "estado": "Completado",
+      "initials": "EC"
+    },
+    {
+      "nombre": "Haley Armenta",
+      "cargo": "Secretarial",
+      "estado": "Completado",
+      "initials": "HA"
+    },
+    {
+      "nombre": "Ruby Gonsalez",
+      "cargo": "Contadora",
+      "estado": "Completado",
+      "initials": "RG"
+    },
+    {
+      "nombre": "Marlon Chiquete",
+      "cargo": "Coord. Actividades Espirituales",
+      "estado": "Completado",
+      "initials": "MC"
+    }
+  ]
+}

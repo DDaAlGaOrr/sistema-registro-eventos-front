@@ -1,0 +1,120 @@
+/* Fondo general con degradado similar al de tu imagen */
+.login-container {
+  height: 100vh;
+  background: linear-gradient(135deg, #e9edf5, #cfd8f3, #dcd3f5);
+}
+
+/* Card principal */
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Inputs */
+.custom-input {
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #d0d5dd;
+  transition: all 0.2s ease;
+}
+
+.custom-input:focus {
+  border-color: #6c7ae0;
+  box-shadow: 0 0 0 0.2rem rgba(108, 122, 224, 0.25);
+}
+
+/* Botón con degradado como el de tu UI */
+.btn-login {
+  background: linear-gradient(90deg, #5f6fdc, #7a6ff0);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Links */
+.link-custom {
+  color: #6c7ae0;
+  text-decoration: none;
+}
+
+.link-custom:hover {
+  text-decoration: underline;
+}
+
+/* ----- ANIMATIONS ----- */
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeIn {
+  opacity:0;
+  -webkit-animation:fadeIn ease-in 1;
+  -moz-animation:fadeIn ease-in 1;
+  animation:fadeIn ease-in 1;
+
+  -webkit-animation-fill-mode:forwards;
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+
+  -webkit-animation-duration:1s;
+  -moz-animation-duration:1s;
+  animation-duration:1s;
+}
+
+.fadeIn.first {
+  -webkit-animation-delay: 0.4s;
+  -moz-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+/* ----- ANIMATIONS ----- */
+
+.btn-icon-eye {
+  background: transparent;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  color: #6c757d;
+  z-index: 5;
+
+  &:hover {
+    color: #495057;
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+input#password {
+  font-size: 1.1rem;
+}

@@ -1,0 +1,177 @@
+{
+  "TITLE": "FEJA 2026 Congress Registration",
+  "SIDEBAR": {
+    "STEP1": "Personal Information",
+    "STEP2": "Emergency Contact",
+    "STEP3": "Summary",
+    "STEP4": "Confirmation",
+    "STEP5": "Received"
+  },
+  "TOPBAR": {
+    "Completed": "Registration completed!",
+    "Of": "of"
+  },
+  "INFO": {
+    "TITLE": "General Information",
+    "EVENT": "Feja | Union Pacífico 2026",
+    "CARDS": {
+      "Card1": {
+        "Title": "Cost",
+        "Label": "Registration",
+        "Description": "Registration is completely free!"
+      },
+      "Card2": {
+        "Title": "Location",
+        "Label": "Of the Congress",
+        "Description": "We'll be waiting for you in Phoenix, Arizona"
+      },
+      "Card3": {
+        "Title": "Dates",
+        "Label": "Of the Event",
+        "Description": "From Friday, October 16 to Sunday, October 18, 2026!"
+      },
+      "Card4": {
+        "Title": "Chaperones",
+        "Label": "Limit",
+        "Description1": "1 for the boys",
+        "Description2": "1 for the girls"
+      },
+      "Card5": {
+        "Title": "Information",
+        "Label": "Activities",
+        "Description": "https://congreso-union.fesjaz.com"
+      },
+      "Card6": {
+        "Title": "Contacts",
+        "Description": [
+          {
+            "Name": "Haley Armenta:",
+            "Phone": "520-312-8901"
+          },
+          {
+            "Name": "Adriana Aviles:",
+            "Phone": "520-450-9778"
+          }
+        ]
+      }
+    },
+    "EMAIL": "Official email: fesjarizona@gmail.com"
+  },
+  "STEP1": {
+    "TITLE1": "Personal Details",
+    "TITLE2": "Address Information",
+    "TITLE3": "Registration Details",
+    "FORM-INPUTS": {
+      "InputName": "First Name",
+      "ValidationName": "First name is required.",
+      "InputLastName": "Last Name",
+      "ValidationLastName": "Last name is required.",
+      "InputEmail": "Email Address",
+      "ValidationEmail": "Please enter a valid email.",
+      "InputPhone": "Phone",
+      "ValidationPhone": "Phone number is required.",
+      "InputBirthDate": "Date of Birth",
+      "ValidationBirthDate": "Date of birth is required.",
+      "InputGender": "Gender",
+      "OptionMasc": "Male",
+      "OptionFem": "Female",
+      "ValidationGender": "Gender is required.",
+      "InputState": "State",
+      "ValidationState": "State is required.",
+      "InputConf": "Conference",
+      "ValidationConf": "Conference is required.",
+      "InputCity": "City",
+      "ValidationCity": "City is required.",
+      "InputChurch": "Church you attend",
+      "ValidationChurch": "Church is required."
+    },
+    "FORM-CHECKS": {
+      "OPTIONS": {
+        "OptionNo": "No",
+        "OptionYes": "Yes"
+      },
+      "Q1": {
+        "Question1": "Would you like to include lunch?*",
+        "Question1b": "Do you have any dietary preference?",
+        "PreFood": "Dietary Preference",
+        "PreFoodValidation": "Please select a dietary preference.",
+        "Options": {
+          "OptionSelected": "Select an option",
+          "Option1": "No Preference",
+          "Option2": "Vegetarian",
+          "Option3": "Vegan",
+          "Option4": "Other",
+          "Description": "Specify your allergy, restriction, preference, or intolerance",
+          "DescriptionValidation": "Please describe any allergy, food you don't eat, or special indication."
+        }
+      },
+      "Q2": {
+        "Question2": "Would you like to include the official event T-shirt?*",
+        "OptionLabel": "T-shirt size",
+        "OptionValidation": "T-shirt size is required."
+      },
+      "Q3": "Will you be a chaperone for your youth group?"
+    },
+    "Warning": "*If you include lunch and/or the official T-shirt, you must call your corresponding conference to make the payment. Alternatively, contact your church's youth director for more information."
+  },
+  "STEP2": {
+    "TITLE1": "Emergency Contact Information",
+    "Subtitle": "All attendees must complete this section.",
+    "Description": "Your safety is very important to us, so please make sure to fill in the contact details of someone we can reach in case of an emergency.",
+    "TITLE2": "Emergency Details",
+    "FORM-INPUTS": {
+      "InputNameContact": "Contact Name",
+      "ValidationNameContact": "Contact name is required.",
+      "InputPhoneContact": "Phone Number",
+      "ValidationPhoneContact": "Contact's phone number is required.",
+      "Options": {
+        "OptSelected": "Relationship to Contact",
+        "Option1": "Spouse",
+        "Option2": "Parents",
+        "Option3": "Sibling",
+        "Option4": "Relative",
+        "Option5": "Friend",
+        "Option6": "Other",
+        "ValidationOption": "Relationship is required."
+      }
+    }
+  },
+  "STEP3": {
+    "TITLE": "Registration Summary",
+    "buttonEdit": "Edit Information",
+    "FullNameLabel": "Full Name",
+    "AgeLabel": "Age",
+    "YearsLabel": "Years",
+    "NotSpecified": "Not specified",
+    "Male": "Male",
+    "Female": "Female",
+    "SizeSmall": "Small",
+    "SizeMedium": "Medium",
+    "SizeLarge": "Large",
+    "SizeExtraLarge": "Extra Large"
+  },
+  "STEP4": {
+    "TITLE": "Registration Confirmed!",
+    "Description1": "Your information has been successfully verified.",
+    "Description2": "Click ",
+    "FinishLabel": "finish ",
+    "Description2b": "to complete your congress registration.",
+    "EmergencyLabel": "Emergency",
+    "ButtonEndRegister": "Finish Registration",
+    "LocationLabel": "Location",
+    "EmergencyContact": "Emergency"
+  },
+  "STEP5": {
+    "TITLE": "Thank you",
+    "DefaultName": "Friend",
+    "Subtitle": "Feja has successfully received your registration.",
+    "Description1": "We've sent an email to ",
+    "Description2": " with your registration details",
+    "Badget": "If you can't find the email in your inbox, check your spam or junk folder.",
+    "ButtonBack": "Back to Feja.com"
+  },
+  "FOOTER": {
+    "NEXT": "Next",
+    "BACK": "Back"
+  }
+}
