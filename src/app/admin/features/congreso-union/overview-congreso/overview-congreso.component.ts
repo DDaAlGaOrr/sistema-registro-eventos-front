@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardService } from '../../../core/services/dashboard.service';
 import { StatCard, RecentActivity, ConferenceRegistered, StaffMember } from '../../../core/models/dashboard.model';
 import { EventsService } from '../../../core/services/events.service';
+import { AuthService } from '../../../auth/auth/service/auth.service';
 import { ParticipantesService } from '../../../core/services/participants.service';
 import { RegisteredUsers } from '../../../core/models/events.model';
 
@@ -177,6 +178,7 @@ export class OverviewCongresoComponent
   private participantesService = inject(ParticipantesService);
   private eventsService = inject(EventsService);
   private cdr = inject(ChangeDetectorRef);
+  private authService = inject(AuthService);
 
   // ---------- estado de carga ----------
   cargandoStats = true;
@@ -337,7 +339,9 @@ export class OverviewCongresoComponent
   // ---------- RESTO DE TU LÓGICA (SSE, DASHBOARD, FECHAS) ----------
 
   conectarSSE() {
-    this.eventSource = new EventSource(`${URL_API}/events/stream`);
+    // EventSource no puede mandar headers: el token va en la URL (solo esta ruta lo acepta)
+    const token = this.authService.getToken() ?? '';
+    this.eventSource = new EventSource(`${URL_API}/events/stream?token=${encodeURIComponent(token)}`);
 
     this.eventSource.onmessage = (event) => {
       const nuevoRegistro = JSON.parse(event.data);
