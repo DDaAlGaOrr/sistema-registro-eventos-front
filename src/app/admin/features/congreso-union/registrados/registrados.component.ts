@@ -384,6 +384,11 @@ export class RegistradosComponent implements OnInit, OnDestroy {
       this.form.get('ciudad')?.disable();
       this.form.get('checkin_at')?.disable();
     }
+    // Los pagos solo los cambia finanzas (la API también lo valida)
+    if (this.authUser.role === 'staff') {
+      this.form.get('pago_camiseta')?.disable();
+      this.form.get('pago_lunchtime')?.disable();
+    }
     this.participantModal?.show();
     this.getStates();
     this.getSizes();
