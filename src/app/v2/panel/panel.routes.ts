@@ -74,8 +74,23 @@ export const PANEL_ROUTES: Routes = [
                         data: { permission: 'audit.read' },
                         loadComponent: () => import('./audit/audit-page.component').then(m => m.AuditPageComponent),
                     },
-                    // Paso 12
-                    soon('formularios', 'V2.PANEL.MENU.FORMS', 'forms.manage'),
+                    {
+                        path: 'formularios',
+                        canActivate: [permissionGuard],
+                        data: { permission: 'forms.manage' },
+                        children: [
+                            {
+                                path: '',
+                                pathMatch: 'full',
+                                loadComponent: () => import('./forms/forms-list-page.component').then(m => m.FormsListPageComponent),
+                            },
+                            {
+                                path: ':formId',
+                                canDeactivate: [(c: import('./forms/form-editor-page.component').FormEditorPageComponent) => c.confirmLeave()],
+                                loadComponent: () => import('./forms/form-editor-page.component').then(m => m.FormEditorPageComponent),
+                            },
+                        ],
+                    },
                 ],
             },
             // Paso 13

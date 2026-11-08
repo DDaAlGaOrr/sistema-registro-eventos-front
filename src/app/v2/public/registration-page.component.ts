@@ -14,7 +14,7 @@ import { PublicApiService } from './public-api.service';
 import { FormField, FormStep, PaymentMethod, PublicForm } from './public.models';
 
 /** Campos cortos van de a dos por fila en pantallas grandes. */
-const HALF_WIDTH = new Set(['text', 'email', 'phone', 'number', 'date', 'select', 'item_variant']);
+export const HALF_WIDTH = new Set(['text', 'email', 'phone', 'number', 'date', 'select', 'item_variant']);
 
 type PageStatus = 'loading' | 'ready' | 'closed' | 'notfound' | 'error';
 
