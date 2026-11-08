@@ -2,7 +2,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { ApiResponse } from './../models/api-response.interface';
-import { Conferences, States, Sizes } from '../models/general.interface';
+import { Churches, Conferences, States, Sizes } from '../models/general.interface';
 import { URL_API, CITIES_API } from '../../environment/environment';
 import { EventData } from '../models/event.interface';
 import { UserDataRegister } from '../models/registration-to-save.interface';
@@ -40,7 +40,7 @@ export class ApiService {
         return this.httpClient.post<ApiResponse<number>>(`${URL_API}/events/${eventId}/register`, body)
     }
 
-    public wasFoodPaid(registerId: number): Observable<ApiResponse<boolean>> {
-        return this.httpClient.get<ApiResponse<boolean>>(`${URL_API}/events/register/${registerId}/was-food-paid`)
+    public getChurches(): Observable<ApiResponse<Churches[]>> {
+        return this.httpClient.get<ApiResponse<Churches[]>>(`${URL_API}/churches`)
     }
 }

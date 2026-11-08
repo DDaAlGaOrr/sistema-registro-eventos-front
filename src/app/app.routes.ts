@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { guestGuard } from './v2/core/guards';
 
 export const routes: Routes = [
   {
@@ -6,23 +7,39 @@ export const routes: Routes = [
     redirectTo: 'registro/2',
     pathMatch: 'full'
   },
-  // Ruta de Login limpia (apunta a tu AuthComponent dentro de la carpeta admin/auth)
+
+  // ── Acceso al panel (V2) ─────────────────────────────────────────────
   {
     path: 'login',
-    loadComponent: () =>
-      import('./admin/auth/auth/auth.component').then(m => m.AuthComponent)
+    canActivate: [guestGuard],
+    loadComponent: () => import('./v2/auth/login.component').then(m => m.LoginV2Component),
   },
-  // Rama Registro
+  {
+    path: 'recuperar',
+    loadComponent: () => import('./v2/auth/forgot-password.component').then(m => m.ForgotPasswordComponent),
+  },
+  {
+    path: 'restablecer',
+    data: { mode: 'reset' },
+    loadComponent: () => import('./v2/auth/set-password.component').then(m => m.SetPasswordComponent),
+  },
+  {
+    path: 'invitacion',
+    data: { mode: 'invite' },
+    loadComponent: () => import('./v2/auth/set-password.component').then(m => m.SetPasswordComponent),
+  },
+
+  // ── Panel de administración (V2) ─────────────────────────────────────
+  {
+    path: 'admin',
+    loadChildren: () => import('./v2/panel/panel.routes').then(m => m.PANEL_ROUTES),
+  },
+
+  // ── Formulario público (V1, se reemplaza en el Paso 10) ──────────────
   {
     path: 'registro',
     loadChildren: () =>
       import('./features/registration/registration.routes').then(m => m.REGISTRATION_ROUTES)
-  },
-  // Rama Admin protegida
-  {
-    path: 'admin',
-    loadChildren: () =>
-      import('./admin/admin.routes').then(m => m.ADMIN_ROUTES)
   },
   {
     path: '**',

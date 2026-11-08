@@ -73,8 +73,8 @@
       "InputBirthDate": "Fecha de Nacimiento",
       "ValidationBirthDate": "La fecha de nacimiento es requerida.",
       "InputGender": "Género",
-      "OptionMasc":"Masculino",
-      "OptionFem":"Femenino",
+      "OptionMasc": "Masculino",
+      "OptionFem": "Femenino",
       "ValidationGender": "El género es requerido.",
       "InputState": "Estado",
       "ValidationState": "El estado es requerido.",
@@ -173,5 +173,86 @@
   "FOOTER": {
     "NEXT": "Siguiente",
     "BACK": "Atrás"
+  },
+  "V2": {
+    "COMMON": {
+      "LOADING": "Cargando…",
+      "RETRY": "Reintentar",
+      "BACK": "Volver",
+      "LANGUAGE": "English",
+      "COMING_SOON": "Próximamente",
+      "COMING_SOON_TEXT": "Esta sección se construye en el siguiente paso del proyecto."
+    },
+    "AUTH": {
+      "LOGIN_TITLE": "Iniciar sesión",
+      "LOGIN_SUBTITLE": "Panel de administración",
+      "EMAIL": "Correo",
+      "PASSWORD": "Contraseña",
+      "SIGN_IN": "Entrar",
+      "SIGNING_IN": "Entrando…",
+      "FORGOT": "¿Olvidaste tu contraseña?",
+      "SESSION_EXPIRED": "Tu sesión venció. Vuelve a iniciar sesión.",
+      "FORGOT_TITLE": "Recuperar contraseña",
+      "FORGOT_TEXT": "Escribe tu correo y te enviaremos un enlace para crear una nueva contraseña.",
+      "SEND_LINK": "Enviar enlace",
+      "BACK_TO_LOGIN": "Volver a iniciar sesión",
+      "RESET_TITLE": "Nueva contraseña",
+      "NEW_PASSWORD": "Nueva contraseña",
+      "CONFIRM_PASSWORD": "Confirma la contraseña",
+      "PASSWORD_RULES": "Al menos 10 caracteres, con letras y números.",
+      "PASSWORDS_DONT_MATCH": "Las contraseñas no coinciden.",
+      "SAVE_PASSWORD": "Guardar contraseña",
+      "INVITE_TITLE": "Activa tu cuenta",
+      "INVITE_TEXT": "Te invitaron a administrar los registros. Crea tu contraseña para entrar.",
+      "ACTIVATE": "Activar mi cuenta",
+      "TOKEN_MISSING": "El enlace no es válido. Revisa que lo hayas copiado completo.",
+      "TENANT_NOT_FOUND": "No encontramos este sitio. Revisa la dirección.",
+      "TENANT_ERROR": "No pudimos conectar con el servidor.",
+      "PLATFORM": "Panel de la plataforma"
+    },
+    "PANEL": {
+      "MENU": {
+        "EVENTS": "Eventos",
+        "SUMMARY": "Resumen",
+        "REGISTRATIONS": "Registros",
+        "CHECKIN": "Check-in",
+        "LOGISTICS": "Logística",
+        "PAYMENTS": "Pagos",
+        "FORMS": "Formularios",
+        "AUDIT": "Auditoría",
+        "CHURCHES": "Iglesias",
+        "USERS": "Usuarios",
+        "SETTINGS": "Configuración",
+        "EVENT_SECTION": "Evento",
+        "CLIENT_SECTION": "Administración"
+      },
+      "SELECT_EVENT": "Elige un evento",
+      "NO_EVENTS": "Todavía no hay eventos.",
+      "LOGOUT": "Cerrar sesión",
+      "ROLE": {
+        "owner": "Administrador",
+        "finance": "Finanzas",
+        "staff": "Staff",
+        "viewer": "Solo lectura",
+        "platform": "Plataforma"
+      },
+      "STATUS": {
+        "draft": "Borrador",
+        "published": "Publicado",
+        "closed": "Cerrado",
+        "archived": "Archivado"
+      },
+      "EVENTS_TITLE": "Eventos",
+      "EVENTS_SUBTITLE": "Elige un evento para ver sus registros, check-in y pagos.",
+      "ORGANIZER": "Organiza",
+      "OPEN": "Abrir",
+      "KPI": {
+        "REGISTRATIONS": "Registrados",
+        "CHECKED_IN": "Check-in",
+        "PAID": "Cobrado",
+        "PENDING": "Por cobrar"
+      },
+      "SUMMARY_NOTE": "Las gráficas y tablas completas del resumen llegan en el siguiente paso."
+    }
   }
 }
