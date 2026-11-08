@@ -1,6 +1,6 @@
 import { registrationQuery, conferencesOf } from './admin-api.service';
 import { OrgNode } from './admin.models';
-import { fillDailyGaps, formatAnswer, percent } from './admin.utils';
+import { csvCell, extractPublicCode, fillDailyGaps, formatAnswer, percent, toCsv, toDeliver } from './admin.utils';
 
 describe('admin utils', () => {
     it('fillDailyGaps rellena los días sin registros con 0', () => {
@@ -22,6 +22,31 @@ describe('admin utils', () => {
         const labelOf = (v: unknown) => ({ vegan: 'Vegano', theater: 'Teatro' } as Record<string, string>)[String(v)];
         expect(formatAnswer('vegan', 'Sí', 'No', labelOf)).toBe('Vegano');
         expect(formatAnswer(['theater', 'otro'], 'Sí', 'No', labelOf)).toBe('Teatro, otro');
+    });
+
+    it('extractPublicCode saca el código del QR (solo o dentro de un enlace)', () => {
+        const code = '01M6Y29SY3JGY772VZ7H214NFA';
+        expect(extractPublicCode(code)).toBe(code);
+        expect(extractPublicCode(code.toLowerCase())).toBe(code);
+        expect(extractPublicCode('https://demo.example.com/registro/confirmacion/' + code + '?x=1')).toBe(code);
+        expect(extractPublicCode(`  ${code}\n`)).toBe(code);
+        expect(extractPublicCode('hola')).toBeNull();
+        expect(extractPublicCode(code + 'AB')).toBeNull(); // más largo que un código: no es uno
+        expect(extractPublicCode('01M6Y29SY3JGY772VZ7H214NF')).toBeNull(); // le falta un carácter
+    });
+
+    it('csv: comillas, saltos de línea y protección contra fórmulas', () => {
+        expect(csvCell('a,b')).toBe('"a,b"');
+        expect(csvCell('di "hola"')).toBe('"di ""hola"""');
+        expect(csvCell('=SUM(A1)')).toBe("'=SUM(A1)");
+        expect(csvCell(null)).toBe('');
+        expect(csvCell(12)).toBe('12');
+        expect(toCsv([['a', 'b'], [1, 'x,y']])).toBe('﻿a,b\r\n1,"x,y"\r\n');
+    });
+
+    it('toDeliver cuenta lo pagado o sin costo que falta entregar', () => {
+        expect(toDeliver({ paid: 5, notRequired: 2, delivered: 3 })).toBe(4);
+        expect(toDeliver({ paid: 1, notRequired: 0, delivered: 3 })).toBe(0);
     });
 
     it('percent no divide entre cero', () => {

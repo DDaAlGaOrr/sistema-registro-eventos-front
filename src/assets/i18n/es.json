@@ -330,6 +330,47 @@
         "SYSTEM": "Sistema",
         "NO_HISTORY": "Sin movimientos.",
         "PAY_FIRST": "Primero debe estar pagado"
+      },
+      "CHECKIN": {
+        "COUNTER": "{{done}} de {{total}} con check-in",
+        "TAB_SCAN": "Escanear",
+        "TAB_SEARCH": "Buscar",
+        "CAMERA_START": "Activar cámara",
+        "CAMERA_STOP": "Apagar cámara",
+        "CAMERA_STARTING": "Iniciando cámara…",
+        "CAMERA_DENIED": "No hay permiso para usar la cámara. Actívalo en el navegador o busca por nombre.",
+        "CAMERA_UNAVAILABLE": "No se pudo iniciar la cámara. Busca por nombre o escribe el código.",
+        "POINT": "Apunta al código QR del participante",
+        "OR_CODE": "O escribe el código",
+        "CODE_PLACEHOLDER": "Código del registro",
+        "LOOKUP": "Buscar",
+        "SEARCH_PLACEHOLDER": "Nombre, correo, teléfono o código",
+        "NO_RESULTS": "No encontramos a nadie con ese dato.",
+        "OK": "Entrada registrada",
+        "CANCELLED": "Este registro está cancelado",
+        "ALREADY": "Ya hizo check-in: {{at}} · {{by}}",
+        "OWES": "Tiene un saldo pendiente de {{amount}}",
+        "OWES_HINT": "Los productos sin pagar no se pueden entregar.",
+        "ITEMS": "Productos",
+        "DELIVERED": "Entregado",
+        "CHECK_IN": "Registrar entrada",
+        "NEXT": "Siguiente persona",
+        "FULL_RECORD": "Ver registro completo"
+      },
+      "LOGISTICS": {
+        "SUBTITLE": "Lo que hay que comprar y entregar.",
+        "SUMMARY_CSV": "Resumen para proveedor (CSV)",
+        "LIST_CSV": "Lista de personas (CSV)",
+        "EMPTY": "Este evento no tiene productos ni preguntas con opciones.",
+        "VARIANT": "Talla / opción",
+        "TOTAL": "Total",
+        "PAID": "Pagados",
+        "UNPAID": "Sin pagar",
+        "DELIVERED": "Entregados",
+        "TO_DELIVER": "Por entregar",
+        "AMOUNT": "Monto",
+        "UNANSWERED": "Sin responder",
+        "CSV_PRODUCT": "Producto"
       }
     }
   }

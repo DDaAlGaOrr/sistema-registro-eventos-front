@@ -330,6 +330,47 @@
         "SYSTEM": "System",
         "NO_HISTORY": "No activity.",
         "PAY_FIRST": "It must be paid first"
+      },
+      "CHECKIN": {
+        "COUNTER": "{{done}} of {{total}} checked in",
+        "TAB_SCAN": "Scan",
+        "TAB_SEARCH": "Search",
+        "CAMERA_START": "Turn on camera",
+        "CAMERA_STOP": "Turn off camera",
+        "CAMERA_STARTING": "Starting camera…",
+        "CAMERA_DENIED": "Camera access is blocked. Allow it in your browser or search by name.",
+        "CAMERA_UNAVAILABLE": "The camera could not be started. Search by name or type the code.",
+        "POINT": "Point at the attendee's QR code",
+        "OR_CODE": "Or type the code",
+        "CODE_PLACEHOLDER": "Registration code",
+        "LOOKUP": "Look up",
+        "SEARCH_PLACEHOLDER": "Name, email, phone or code",
+        "NO_RESULTS": "We couldn't find anyone with that.",
+        "OK": "Checked in",
+        "CANCELLED": "This registration is cancelled",
+        "ALREADY": "Already checked in: {{at}} · {{by}}",
+        "OWES": "Outstanding balance of {{amount}}",
+        "OWES_HINT": "Unpaid products can't be handed out.",
+        "ITEMS": "Products",
+        "DELIVERED": "Delivered",
+        "CHECK_IN": "Check in",
+        "NEXT": "Next person",
+        "FULL_RECORD": "View full record"
+      },
+      "LOGISTICS": {
+        "SUBTITLE": "What needs to be bought and handed out.",
+        "SUMMARY_CSV": "Supplier summary (CSV)",
+        "LIST_CSV": "List of people (CSV)",
+        "EMPTY": "This event has no products or questions with options.",
+        "VARIANT": "Size / option",
+        "TOTAL": "Total",
+        "PAID": "Paid",
+        "UNPAID": "Unpaid",
+        "DELIVERED": "Delivered",
+        "TO_DELIVER": "To deliver",
+        "AMOUNT": "Amount",
+        "UNANSWERED": "Unanswered",
+        "CSV_PRODUCT": "Product"
       }
     }
   }

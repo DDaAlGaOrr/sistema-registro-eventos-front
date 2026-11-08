@@ -26,7 +26,7 @@ export interface EventReport {
         code: string;
         name: I18nText;
         variants: {
-            variant: string | null; total: number; paid: number; unpaid: number; notRequired: number;
+            variant: string | null; label: I18nText | null; total: number; paid: number; unpaid: number; notRequired: number;
             delivered: number; cents: number; paidCents: number;
         }[];
     }[];
@@ -87,6 +87,8 @@ export interface RegistrationFilters {
     paymentStatus?: PaymentStatus | '';
     checkedIn?: 'true' | 'false' | '';
     deleted?: 'only' | '';
+    itemCode?: string;
+    variantCode?: string;
 }
 
 export type RegistrationSort = 'created_at' | 'last_name' | 'checked_in_at';
@@ -198,4 +200,33 @@ export interface FormItemsView {
         code: string;
         variants: { id: number; code: string; label: I18nText; isActive: boolean; stock: number | null }[];
     }[];
+}
+
+// ── Check-in ────────────────────────────────────────────────────────────
+
+/** Lo que ve el staff al escanear: quién es, qué pidió, qué debe y si ya entró. */
+export interface CheckinSummary {
+    id: number;
+    publicCode: string;
+    firstName: string;
+    lastName: string;
+    conference: { id: number; name: string; shortName: string | null } | null;
+    church: { id?: number; name: string } | null;
+    status: RegistrationStatus;
+    paymentStatus: PaymentStatus;
+    pendingCents: number;
+    items: {
+        id: number;
+        code: string;
+        name: I18nText;
+        variant: { code: string; label: I18nText } | null;
+        paymentStatus: string;
+        deliveredAt: string | null;
+    }[];
+    checkIn: { at: string; by: string | null; method: string | null } | null;
+}
+
+export interface CheckinResult {
+    result: 'checked_in' | 'already_checked_in';
+    registration: CheckinSummary;
 }
