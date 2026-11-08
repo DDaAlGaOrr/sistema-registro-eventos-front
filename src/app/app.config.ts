@@ -1,31 +1,37 @@
-import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { APP_INITIALIZER, ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { routes } from './app.routes';
 
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { authInterceptor } from './admin/auth/auth/interceptors/auth.interceptor';
+import { apiV2Interceptor } from './v2/core/api.interceptor';
+import { TenantService } from './v2/core/tenant.service';
 
-import { TranslateModule } from '@ngx-translate/core';
+import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    provideRouter(routes, withComponentInputBinding()),
 
     provideHttpClient(
-      withInterceptors([authInterceptor])
+      withInterceptors([apiV2Interceptor])
     ),
 
-    importProvidersFrom(
-      TranslateModule.forRoot({
-        defaultLanguage: 'es',
-      })
-    ),
+    // Antes de pintar nada: qué cliente es (subdominio) y su marca
+    {
+      provide: APP_INITIALIZER,
+      multi: true,
+      deps: [TenantService],
+      useFactory: (tenant: TenantService) => () => tenant.load(),
+    },
 
-    provideTranslateHttpLoader({
-      prefix: './assets/i18n/',
-      suffix: '.json',
+    provideTranslateService({
+      fallbackLang: 'es',
+      loader: provideTranslateHttpLoader({
+        prefix: './assets/i18n/',
+        suffix: '.json',
+      }),
     }),
   ],
 };

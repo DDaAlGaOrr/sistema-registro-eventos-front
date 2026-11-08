@@ -8,8 +8,7 @@ import { ApiService } from './../../../../core/services/api.service';
 import { Conferences, Sizes, States } from '../../../../core/models/general.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
-import { EventsService } from '../../../../admin/core/services/events.service';
-import { Churches } from '../../../../admin/core/models/dashboard.model';
+import { Churches } from '../../../../core/models/general.interface';
 
 @Component({
   selector: 'app-step1-datos-personales',
@@ -30,7 +29,6 @@ export class Step1DatosPersonalesComponent implements OnInit {
   constructor(
     private registrationFormService: RegistrationFormService,
     private apiService: ApiService,
-    private eventsService: EventsService,
   ) { }
 
   ngOnInit() {
@@ -66,7 +64,7 @@ export class Step1DatosPersonalesComponent implements OnInit {
 
 
   getChurches() {
-    this.eventsService.getChurches().subscribe({
+    this.apiService.getChurches().subscribe({
       next: (response: ApiResponse<Churches[]>) => {
         this.availableChurches = response.data.map(church => church.iglesia)
       },

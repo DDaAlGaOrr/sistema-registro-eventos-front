@@ -173,5 +173,86 @@
   "FOOTER": {
     "NEXT": "Next",
     "BACK": "Back"
+  },
+  "V2": {
+    "COMMON": {
+      "LOADING": "Loading…",
+      "RETRY": "Try again",
+      "BACK": "Back",
+      "LANGUAGE": "Español",
+      "COMING_SOON": "Coming soon",
+      "COMING_SOON_TEXT": "This section is built in the next step of the project."
+    },
+    "AUTH": {
+      "LOGIN_TITLE": "Sign in",
+      "LOGIN_SUBTITLE": "Admin panel",
+      "EMAIL": "Email",
+      "PASSWORD": "Password",
+      "SIGN_IN": "Sign in",
+      "SIGNING_IN": "Signing in…",
+      "FORGOT": "Forgot your password?",
+      "SESSION_EXPIRED": "Your session expired. Please sign in again.",
+      "FORGOT_TITLE": "Reset password",
+      "FORGOT_TEXT": "Enter your email and we'll send you a link to create a new password.",
+      "SEND_LINK": "Send link",
+      "BACK_TO_LOGIN": "Back to sign in",
+      "RESET_TITLE": "New password",
+      "NEW_PASSWORD": "New password",
+      "CONFIRM_PASSWORD": "Confirm password",
+      "PASSWORD_RULES": "At least 10 characters, with letters and numbers.",
+      "PASSWORDS_DONT_MATCH": "Passwords don't match.",
+      "SAVE_PASSWORD": "Save password",
+      "INVITE_TITLE": "Activate your account",
+      "INVITE_TEXT": "You were invited to manage registrations. Create your password to get started.",
+      "ACTIVATE": "Activate my account",
+      "TOKEN_MISSING": "The link isn't valid. Make sure you copied it completely.",
+      "TENANT_NOT_FOUND": "We couldn't find this site. Check the address.",
+      "TENANT_ERROR": "We couldn't reach the server.",
+      "PLATFORM": "Platform panel"
+    },
+    "PANEL": {
+      "MENU": {
+        "EVENTS": "Events",
+        "SUMMARY": "Overview",
+        "REGISTRATIONS": "Registrations",
+        "CHECKIN": "Check-in",
+        "LOGISTICS": "Logistics",
+        "PAYMENTS": "Payments",
+        "FORMS": "Forms",
+        "AUDIT": "Audit log",
+        "CHURCHES": "Churches",
+        "USERS": "Users",
+        "SETTINGS": "Settings",
+        "EVENT_SECTION": "Event",
+        "CLIENT_SECTION": "Administration"
+      },
+      "SELECT_EVENT": "Choose an event",
+      "NO_EVENTS": "There are no events yet.",
+      "LOGOUT": "Sign out",
+      "ROLE": {
+        "owner": "Administrator",
+        "finance": "Finance",
+        "staff": "Staff",
+        "viewer": "Read only",
+        "platform": "Platform"
+      },
+      "STATUS": {
+        "draft": "Draft",
+        "published": "Published",
+        "closed": "Closed",
+        "archived": "Archived"
+      },
+      "EVENTS_TITLE": "Events",
+      "EVENTS_SUBTITLE": "Choose an event to see its registrations, check-in and payments.",
+      "ORGANIZER": "Organized by",
+      "OPEN": "Open",
+      "KPI": {
+        "REGISTRATIONS": "Registered",
+        "CHECKED_IN": "Checked in",
+        "PAID": "Collected",
+        "PENDING": "Outstanding"
+      },
+      "SUMMARY_NOTE": "Full charts and tables for the overview come in the next step."
+    }
   }
 }

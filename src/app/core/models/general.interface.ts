@@ -16,3 +16,8 @@ export interface Sizes {
     talla: string,
     descripcion: string
 }
+export interface Churches {
+    iglesia: string,
+    conferenciaId: number,
+    nombreConferencia: string
+}
