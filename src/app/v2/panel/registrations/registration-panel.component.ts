@@ -13,6 +13,7 @@ import {
     AuditEntry, FormItemsView, OrgNode, RegistrationDetail, RegistrationItemDetail, RegistrationUpdate,
 } from '../admin.models';
 import { PAYMENT_BADGE, STATUS_BADGE, formatAnswer } from '../admin.utils';
+import { RegistrationPaymentsComponent } from './registration-payments.component';
 
 type Tab = 'data' | 'items' | 'payments' | 'history';
 
@@ -24,7 +25,7 @@ type Tab = 'data' | 'items' | 'payments' | 'history';
 @Component({
     selector: 'app-registration-panel',
     standalone: true,
-    imports: [ReactiveFormsModule, TranslateModule, I18nPipe, CanDirective],
+    imports: [ReactiveFormsModule, TranslateModule, I18nPipe, CanDirective, RegistrationPaymentsComponent],
     template: `
     <div class="rp__backdrop" (click)="closed.emit()"></div>
     <aside class="rp" role="dialog" aria-modal="true">
@@ -210,24 +211,7 @@ type Tab = 'data' | 'items' | 'payments' | 'history';
             }
 
             @case ('payments') {
-              <div class="rp__total mt-0 mb-3">
-                <span>{{ 'V2.ADMIN.REG.PAID' | translate }}</span>
-                <strong>{{ money(d.paidCents) }} / {{ money(d.totalCents) }}</strong>
-              </div>
-              <ul class="list-unstyled mb-0">
-                @for (p of d.payments; track p.id) {
-                  <li class="rp__item">
-                    <div class="d-flex justify-content-between">
-                      <strong>{{ ('V2.ADMIN.METHOD.' + p.method) | translate }}</strong><strong>{{ money(p.amountCents) }}</strong>
-                    </div>
-                    <div class="small text-muted">
-                      {{ ('V2.ADMIN.PAYMENT_ROW.' + p.status) | translate }}@if (p.paidAt) { · {{ when(p.paidAt) }} }@if (p.recordedBy) { · {{ p.recordedBy }} }
-                      @if (p.refundedCents) { · {{ 'V2.ADMIN.REG.REFUNDED' | translate: { amount: money(p.refundedCents) } }} }
-                    </div>
-                    @if (p.reference || p.notes) { <div class="small">{{ p.reference }} {{ p.notes }}</div> }
-                  </li>
-                } @empty { <p class="text-muted mb-0">{{ 'V2.ADMIN.REG.NO_PAYMENTS' | translate }}</p> }
-              </ul>
+              <app-registration-payments [detail]="d" [timezone]="timezone" (changed)="reload()" />
             }
 
             @case ('history') {
@@ -286,6 +270,8 @@ export class RegistrationPanelComponent implements OnChanges {
     @Input() timezone: string | undefined;
     /** Se abre desde la papelera (solo quien puede borrar puede pedir registros borrados). */
     @Input() includeDeleted = false;
+    /** Pestaña con la que se abre el panel (por ejemplo "payments" desde la vista de Pagos). */
+    @Input() initialTab: Tab = 'data';
     @Output() closed = new EventEmitter<void>();
     /** Algo cambió (check-in, edición, borrado…): la lista debe refrescarse. */
     @Output() changed = new EventEmitter<RegistrationDetail>();
@@ -344,7 +330,7 @@ export class RegistrationPanelComponent implements OnChanges {
             this.detail.set(null);
             this.history.set(null);
             this.formItems.set(null);
-            this.tab.set('data');
+            this.tab.set(this.initialTab);
             this.editing.set(false);
             this.confirmingDelete.set(false);
             this.actionError.set(null);
@@ -355,7 +341,12 @@ export class RegistrationPanelComponent implements OnChanges {
     load() {
         this.error.set(null);
         this.api.registration(this.registrationId, this.includeDeleted).subscribe({
-            next: d => this.detail.set(d),
+            next: d => {
+                this.detail.set(d);
+                // Si el panel se abrió directo en otra pestaña, se cargan sus datos
+                if (this.tab() === 'items') this.openItems();
+                if (this.tab() === 'history') this.openHistory();
+            },
             error: (e: ApiError) => this.error.set(e),
         });
     }
@@ -383,13 +374,13 @@ export class RegistrationPanelComponent implements OnChanges {
         this.busy.set(true);
         this.actionError.set(null);
         request.subscribe({
-            next: () => this.refresh(),
+            next: () => this.reload(),
             error: (e: ApiError) => { this.busy.set(false); this.actionError.set(e); },
         });
     }
 
     /** Vuelve a pedir el registro completo (cada acción de la API responde con un resumen distinto). */
-    private refresh() {
+    reload() {
         const id = this.registrationId;
         this.api.registration(id, this.includeDeleted || !!this.detail()?.deletedAt).subscribe({
             next: d => this.applied(d),
@@ -470,7 +461,7 @@ export class RegistrationPanelComponent implements OnChanges {
         this.busy.set(true);
         this.formError.set(null);
         this.api.updateRegistration(d.id, changes).subscribe({
-            next: () => { this.editing.set(false); this.refresh(); },
+            next: () => { this.editing.set(false); this.reload(); },
             error: (e: ApiError) => { this.busy.set(false); this.formError.set(e); },
         });
     }

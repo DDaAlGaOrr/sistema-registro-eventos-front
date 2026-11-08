@@ -5,7 +5,7 @@ import { API_V2 } from '../../environment/environment';
 import { ApiV2Service, toApiError } from '../core/api.service';
 import { Locale } from '../core/models';
 import {
-    ActivityItem, AuditEntry, CheckinResult, CheckinSummary, EventReport, FormItemsView, OrgNode, Page, RegistrationDetail, RegistrationFilters, RegistrationListItem,
+    ActivityItem, AuditEntry, AuditFilters, CheckinResult, CheckinSummary, EventReport, EventPaymentsPage, FormItemsView, ManualPaymentInput, Member, OrgNode, Page, PaymentFilters, RegistrationDetail, RegistrationFilters, RegistrationListItem,
     RegistrationSort, RegistrationUpdate,
 } from './admin.models';
 
@@ -103,6 +103,35 @@ export class AdminApiService {
 
     history(registrationId: number): Observable<AuditEntry[]> {
         return this.api.get(`/registrations/${registrationId}/history`);
+    }
+
+    // ── Pagos ──
+
+    eventPayments(eventId: number, filters: PaymentFilters, page: number, pageSize: number): Observable<EventPaymentsPage> {
+        return this.api.get('/events/' + eventId + '/payments', { page, pageSize, method: filters.method, status: filters.status });
+    }
+
+    recordPayment(registrationId: number, input: ManualPaymentInput): Observable<unknown> {
+        return this.api.post('/registrations/' + registrationId + '/payments', input);
+    }
+
+    voidPayment(paymentId: number, reason: string): Observable<unknown> {
+        return this.api.post('/payments/' + paymentId + '/void', { reason });
+    }
+
+    refundPayment(paymentId: number, reason: string, amountCents?: number): Observable<unknown> {
+        return this.api.post('/payments/' + paymentId + '/refund', { reason, ...(amountCents ? { amountCents } : {}) });
+    }
+
+    // ── Auditoría ──
+
+    audit(filters: AuditFilters, page: number, pageSize: number): Observable<Page<AuditEntry>> {
+        return this.api.get('/audit', { page, pageSize, eventId: filters.eventId, entityType: filters.entityType, action: filters.action,
+            actorUserId: filters.actorUserId, from: filters.from, to: filters.to });
+    }
+
+    members(): Observable<Member[]> {
+        return this.api.get('/users');
     }
 
     private tree$?: Observable<OrgNode | null>;

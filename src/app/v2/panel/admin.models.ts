@@ -230,3 +230,56 @@ export interface CheckinResult {
     result: 'checked_in' | 'already_checked_in';
     registration: CheckinSummary;
 }
+
+// ── Pagos ───────────────────────────────────────────────────────────────
+
+export type ManualMethod = 'cash' | 'check' | 'zelle' | 'other';
+
+export interface EventPayment {
+    id: number;
+    method: PaymentMethodKey;
+    status: string;
+    amountCents: number;
+    refundedCents: number;
+    reference: string | null;
+    notes: string | null;
+    paidAt: string | null;
+    createdAt: string;
+    recordedBy: string | null;
+    registration: { id: number; firstName: string; lastName: string; publicCode: string };
+}
+
+export interface EventPaymentsPage extends Page<EventPayment> {
+    totals: { collectedCents: number; refundedCents: number; netCents: number };
+}
+
+export interface PaymentFilters {
+    method?: PaymentMethodKey | '';
+    status?: string;
+}
+
+export interface ManualPaymentInput {
+    method: ManualMethod;
+    /** Productos que cubre (registration_items.id); vacío = todo lo pendiente. */
+    itemIds?: number[];
+    reference?: string | null;
+    notes?: string | null;
+}
+
+// ── Auditoría (filtros y miembros para elegir a la persona) ─────────────
+
+export interface AuditFilters {
+    eventId?: number | null;
+    entityType?: string;
+    action?: string;
+    actorUserId?: number | null;
+    from?: string;
+    to?: string;
+}
+
+export interface Member {
+    userId: number;
+    name: string;
+    email: string;
+    role: string;
+}

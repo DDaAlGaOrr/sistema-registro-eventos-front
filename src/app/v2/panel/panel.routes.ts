@@ -62,8 +62,18 @@ export const PANEL_ROUTES: Routes = [
                         data: { permission: 'registrations.read' },
                         loadComponent: () => import('./logistics/logistics-page.component').then(m => m.LogisticsPageComponent),
                     },
-                    soon('pagos', 'V2.PANEL.MENU.PAYMENTS', 'payments.write'),
-                    soon('auditoria', 'V2.PANEL.MENU.AUDIT', 'audit.read'),
+                    {
+                        path: 'pagos',
+                        canActivate: [permissionGuard],
+                        data: { permission: 'payments.write' },
+                        loadComponent: () => import('./payments/payments-page.component').then(m => m.PaymentsPageComponent),
+                    },
+                    {
+                        path: 'auditoria',
+                        canActivate: [permissionGuard],
+                        data: { permission: 'audit.read' },
+                        loadComponent: () => import('./audit/audit-page.component').then(m => m.AuditPageComponent),
+                    },
                     // Paso 12
                     soon('formularios', 'V2.PANEL.MENU.FORMS', 'forms.manage'),
                 ],
