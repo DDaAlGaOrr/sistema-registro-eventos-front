@@ -3,6 +3,9 @@ import { Injectable, inject } from '@angular/core';
 import { Observable, catchError, shareReplay, throwError } from 'rxjs';
 import { API_V2 } from '../../environment/environment';
 import { ApiV2Service, toApiError } from '../core/api.service';
+import { I18nText } from '../core/models';
+import { FormSchema } from '../public/public.models';
+import { AdminForm, FormListItem, FormVersionInfo, SaveDraftResult } from './forms/builder.models';
 import { Locale } from '../core/models';
 import {
     ActivityItem, AuditEntry, AuditFilters, CheckinResult, CheckinSummary, EventReport, EventPaymentsPage, FormItemsView, ManualPaymentInput, Member, OrgNode, Page, PaymentFilters, RegistrationDetail, RegistrationFilters, RegistrationListItem,
@@ -132,6 +135,32 @@ export class AdminApiService {
 
     members(): Observable<Member[]> {
         return this.api.get('/users');
+    }
+
+    // ── Formularios ──
+
+    forms(eventId: number): Observable<FormListItem[]> {
+        return this.api.get('/events/' + eventId + '/forms');
+    }
+
+    createForm(eventId: number, title: I18nText): Observable<AdminForm> {
+        return this.api.post('/events/' + eventId + '/forms', { title });
+    }
+
+    form(formId: number): Observable<AdminForm> {
+        return this.api.get('/forms/' + formId);
+    }
+
+    formVersions(formId: number): Observable<FormVersionInfo[]> {
+        return this.api.get('/forms/' + formId + '/versions');
+    }
+
+    saveDraft(formId: number, schema: FormSchema): Observable<SaveDraftResult> {
+        return this.api.put('/forms/' + formId + '/draft', { schema });
+    }
+
+    publishForm(formId: number): Observable<AdminForm> {
+        return this.api.post('/forms/' + formId + '/publish');
     }
 
     private tree$?: Observable<OrgNode | null>;
