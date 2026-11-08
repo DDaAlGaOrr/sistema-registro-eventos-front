@@ -8,7 +8,7 @@ import { AdminApiService, conferencesOf } from '../admin-api.service';
 import {
     OrgNode, Page, RegistrationDetail, RegistrationFilters, RegistrationListItem, RegistrationSort,
 } from '../admin.models';
-import { PAYMENT_BADGE, STATUS_BADGE } from '../admin.utils';
+import { PAYMENT_BADGE, STATUS_BADGE, saveBlob } from '../admin.utils';
 import { EventContextService } from '../event-context.service';
 import { RegistrationPanelComponent } from './registration-panel.component';
 
@@ -260,12 +260,7 @@ export class RegistrationsPageComponent {
         this.exporting.set(true);
         this.api.exportCsv(eventId, this.filters(), this.language.currentLang()).subscribe({
             next: blob => {
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `registros-${this.context.current()?.slug ?? eventId}.csv`;
-                a.click();
-                URL.revokeObjectURL(url);
+                saveBlob(blob, `registros-${this.context.current()?.slug ?? eventId}.csv`);
                 this.exporting.set(false);
             },
             error: (e: ApiError) => { this.exporting.set(false); this.error.set(e); },

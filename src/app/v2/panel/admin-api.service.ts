@@ -5,7 +5,7 @@ import { API_V2 } from '../../environment/environment';
 import { ApiV2Service, toApiError } from '../core/api.service';
 import { Locale } from '../core/models';
 import {
-    ActivityItem, AuditEntry, EventReport, FormItemsView, OrgNode, Page, RegistrationDetail, RegistrationFilters, RegistrationListItem,
+    ActivityItem, AuditEntry, CheckinResult, CheckinSummary, EventReport, FormItemsView, OrgNode, Page, RegistrationDetail, RegistrationFilters, RegistrationListItem,
     RegistrationSort, RegistrationUpdate,
 } from './admin.models';
 
@@ -24,6 +24,8 @@ export function registrationQuery(
     if (filters.paymentStatus) query['paymentStatus'] = filters.paymentStatus;
     if (filters.checkedIn) query['checkedIn'] = filters.checkedIn;
     if (filters.deleted) query['deleted'] = filters.deleted;
+    if (filters.itemCode) query['itemCode'] = filters.itemCode;
+    if (filters.variantCode) query['variantCode'] = filters.variantCode;
     return query;
 }
 
@@ -56,6 +58,14 @@ export class AdminApiService {
         return this.http.get(`${API_V2}/events/${eventId}/registrations/export`, { params, responseType: 'blob' }).pipe(
             catchError(e => throwError(() => toApiError(e))),
         );
+    }
+
+    checkinLookup(eventId: number, publicCode: string): Observable<CheckinSummary> {
+        return this.api.get('/events/' + eventId + '/checkin/' + publicCode);
+    }
+
+    checkinByCode(eventId: number, publicCode: string): Observable<CheckinResult> {
+        return this.api.post('/events/' + eventId + '/checkin', { publicCode });
     }
 
     registration(id: number, includeDeleted = false): Observable<RegistrationDetail> {

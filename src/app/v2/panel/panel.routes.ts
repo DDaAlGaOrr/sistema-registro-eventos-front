@@ -50,8 +50,18 @@ export const PANEL_ROUTES: Routes = [
                         data: { permission: 'registrations.read' },
                         loadComponent: () => import('./registrations/registrations-page.component').then(m => m.RegistrationsPageComponent),
                     },
-                    soon('checkin', 'V2.PANEL.MENU.CHECKIN', 'checkin.write'),
-                    soon('logistica', 'V2.PANEL.MENU.LOGISTICS', 'registrations.read'),
+                    {
+                        path: 'checkin',
+                        canActivate: [permissionGuard],
+                        data: { permission: 'checkin.write' },
+                        loadComponent: () => import('./checkin/checkin-page.component').then(m => m.CheckinPageComponent),
+                    },
+                    {
+                        path: 'logistica',
+                        canActivate: [permissionGuard],
+                        data: { permission: 'registrations.read' },
+                        loadComponent: () => import('./logistics/logistics-page.component').then(m => m.LogisticsPageComponent),
+                    },
                     soon('pagos', 'V2.PANEL.MENU.PAYMENTS', 'payments.write'),
                     soon('auditoria', 'V2.PANEL.MENU.AUDIT', 'audit.read'),
                     // Paso 12
