@@ -44,7 +44,12 @@ export const PANEL_ROUTES: Routes = [
                         loadComponent: () => import('./pages/event-summary.component').then(m => m.EventSummaryComponent),
                     },
                     // Paso 11
-                    soon('registros', 'V2.PANEL.MENU.REGISTRATIONS', 'registrations.read'),
+                    {
+                        path: 'registros',
+                        canActivate: [permissionGuard],
+                        data: { permission: 'registrations.read' },
+                        loadComponent: () => import('./registrations/registrations-page.component').then(m => m.RegistrationsPageComponent),
+                    },
                     soon('checkin', 'V2.PANEL.MENU.CHECKIN', 'checkin.write'),
                     soon('logistica', 'V2.PANEL.MENU.LOGISTICS', 'registrations.read'),
                     soon('pagos', 'V2.PANEL.MENU.PAYMENTS', 'payments.write'),

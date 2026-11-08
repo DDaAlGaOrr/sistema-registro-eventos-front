@@ -6,7 +6,9 @@
       "BACK": "Back",
       "LANGUAGE": "Español",
       "COMING_SOON": "Coming soon",
-      "COMING_SOON_TEXT": "This section is built in the next step of the project."
+      "COMING_SOON_TEXT": "This section is built in the next step of the project.",
+      "CLOSE": "Close",
+      "CANCEL": "Cancel"
     },
     "AUTH": {
       "LOGIN_TITLE": "Sign in",
@@ -76,8 +78,7 @@
         "CHECKED_IN": "Checked in",
         "PAID": "Collected",
         "PENDING": "Outstanding"
-      },
-      "SUMMARY_NOTE": "Full charts and tables for the overview come in the next step."
+      }
     },
     "PUBLIC": {
       "HOME": {
@@ -195,6 +196,140 @@
         "NOT_FOUND": "We couldn't find this registration. Check the link.",
         "EMAIL_NOTE": "We also sent you an email with this code.",
         "CHECKOUT_ERROR": "We couldn't open the payment page. Please try again."
+      }
+    },
+    "ADMIN": {
+      "YES": "Yes",
+      "NO": "No",
+      "STATUS": {
+        "confirmed": "Confirmed",
+        "pending_payment": "Payment pending",
+        "cancelled": "Cancelled"
+      },
+      "PAYMENT_STATUS": {
+        "paid": "Paid",
+        "partially_paid": "Partially paid",
+        "unpaid": "Unpaid",
+        "not_required": "No charge",
+        "refunded": "Refunded"
+      },
+      "PAYMENT_ROW": {
+        "pending": "Pending",
+        "succeeded": "Collected",
+        "failed": "Failed",
+        "canceled": "Canceled",
+        "refunded": "Refunded",
+        "partially_refunded": "Partially refunded"
+      },
+      "METHOD": {
+        "stripe": "Card (online)",
+        "cash": "Cash",
+        "check": "Check",
+        "zelle": "Zelle",
+        "other": "Other",
+        "legacy": "Previous version"
+      },
+      "GENDER": {
+        "male": "Male",
+        "female": "Female",
+        "undisclosed": "Prefer not to say"
+      },
+      "AUDIT_ACTION": {
+        "registration_created": "Registration created",
+        "registration_updated": "Details edited",
+        "registration_checked_in": "Check-in",
+        "registration_check_in_undone": "Check-in undone",
+        "registration_deleted": "Moved to trash",
+        "registration_restored": "Restored",
+        "registration_item_changed": "Size or product changed",
+        "registration_cancelled_unpaid": "Cancelled for non-payment",
+        "payment_recorded": "Payment recorded",
+        "payment_succeeded": "Online payment received",
+        "payment_refunded": "Refund",
+        "payment_voided": "Payment voided",
+        "registrations_exported": "List exported"
+      },
+      "ACTIVITY": {
+        "registration_created": "registered",
+        "registration_checked_in": "checked in",
+        "registration_check_in_undone": "had check-in undone",
+        "registration_deleted": "was moved to trash"
+      },
+      "SUMMARY": {
+        "EMPTY": "There are no registrations for this event yet.",
+        "DAILY": "Registrations per day",
+        "PAYMENT_STATUS": "Payment status",
+        "BY_CONFERENCE": "By conference",
+        "BY_METHOD": "Collected by method",
+        "NO_PAYMENTS": "No payments yet.",
+        "UNANSWERED": "{{n}} unanswered",
+        "ACTIVITY": "Recent activity",
+        "NO_ACTIVITY": "No activity yet.",
+        "REGISTERED": "Registered",
+        "CHECKED_IN_SERIES": "Checked in"
+      },
+      "LIST": {
+        "COUNT": "{{n}} registrations",
+        "EXPORT": "Export CSV",
+        "EXPORTING": "Exporting…",
+        "SEARCH": "Search by name, email, phone or code",
+        "ALL_CONFERENCES": "All conferences",
+        "ALL_PAYMENTS": "All payments",
+        "ALL_CHECKIN": "Any check-in",
+        "CHECKED_IN": "Checked in",
+        "NOT_CHECKED_IN": "Not checked in",
+        "ALL_STATUS": "All statuses",
+        "TRASH": "Show trash",
+        "CLEAR": "Clear filters",
+        "NAME": "Name",
+        "CONFERENCE": "Conference",
+        "CHURCH": "Church",
+        "PAYMENT": "Payment",
+        "CHECKIN": "Check-in",
+        "REGISTERED": "Registered",
+        "EMPTY": "No registrations match these filters.",
+        "PREV": "Previous page",
+        "NEXT": "Next page"
+      },
+      "REG": {
+        "CHECKED_IN": "Checked in",
+        "DELETED": "In trash",
+        "UNDO_CHECKIN": "Undo check-in",
+        "CHECKIN": "Check in",
+        "DELETE": "Delete",
+        "RESTORE": "Restore",
+        "CHECKED_IN_AT": "Checked in: {{at}} · {{by}}",
+        "DELETE_CONFIRM": "Move this registration to the trash?",
+        "DELETE_REASON": "Reason (optional)",
+        "TAB_DATA": "Details",
+        "TAB_ITEMS": "Products",
+        "TAB_PAYMENTS": "Payments",
+        "TAB_HISTORY": "History",
+        "PERSONAL": "Personal details",
+        "EDIT": "Edit",
+        "EMAIL": "Email",
+        "PHONE": "Phone",
+        "BIRTH": "Date of birth",
+        "GENDER": "Gender",
+        "CONFERENCE": "Conference",
+        "CHURCH": "Church",
+        "CHURCH_PENDING": "pending approval",
+        "REGISTERED_ON": "Registered on",
+        "ANSWERS": "Form answers",
+        "FIRST_NAME": "First name",
+        "LAST_NAME": "Last name",
+        "SAVE": "Save changes",
+        "UNDO_DELIVERY": "Undo delivery",
+        "DELIVER": "Deliver",
+        "DELIVERED_AT": "Delivered: {{at}} · {{by}}",
+        "NO_ITEMS": "No products.",
+        "TOTAL": "Total",
+        "PAID": "Paid",
+        "REFUNDED": "refunded {{amount}}",
+        "NO_PAYMENTS": "No payments recorded yet.",
+        "SYSTEM": "System",
+        "NO_HISTORY": "No activity.",
+        "PAY_FIRST": "It must be paid first"
       }
     }
   }
