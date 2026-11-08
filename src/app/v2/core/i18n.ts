@@ -23,4 +23,11 @@ export function formatEventDates(event: Pick<EventSummary, 'startsAt' | 'endsAt'
 }
 
 export const formatMoney = (cents: number, locale: Locale, currency = 'USD') =>
-    new Intl.NumberFormat(locale === 'es' ? 'es-MX' : 'en-US', { style: 'currency', currency }).format(cents / 100);
+    new Intl.NumberFormat(locale === 'es' ? 'es-US' : 'en-US', { style: 'currency', currency }).format(cents / 100);
+
+/** Fecha y hora en la zona horaria del evento. */
+export function formatEventDateTime(iso: string, timezone: string, locale: Locale): string {
+    return new Intl.DateTimeFormat(locale === 'es' ? 'es-MX' : 'en-US', {
+        dateStyle: 'long', timeStyle: 'short', timeZone: timezone,
+    }).format(new Date(iso));
+}

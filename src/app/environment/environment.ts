@@ -10,7 +10,6 @@ export const URL_API = 'http://localhost:3000/api';
 /** API V2 (multitenant). */
 export const API_V2 = `${URL_API}/v2`;
 
-export const CITIES_API = 'https://countriesnow.space/api/v0.1';
 
 /** Dominios base: {slug}.<dominio> identifica al cliente (pacific.localhost:4200). */
 export const BASE_DOMAINS = ['localhost'];

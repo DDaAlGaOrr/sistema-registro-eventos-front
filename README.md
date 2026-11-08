@@ -35,7 +35,6 @@ variables del proyecto en Vercel (sin ellas el build falla a propósito):
 | `BASE_DOMAINS` | `tuapp.com` | sí |
 | `PLATFORM_SUBDOMAIN` | `app` | no |
 | `DEFAULT_TENANT` | (vacío) | no |
-| `CITIES_API` | | no |
 
 ## Estructura
 
@@ -44,7 +43,7 @@ src/app/
   v2/core/     sesión, cliente (tenant), API V2, interceptor, guards, *appCan, i18n
   v2/auth/     login, recuperar, restablecer, invitación
   v2/panel/    layout del panel, selector de evento y páginas
-  features/    formulario público (V1; se reemplaza en el Paso 10)
+  v2/public/   sitio público del cliente: inicio, evento, formulario dinámico, confirmación
 ```
 
 - **Cliente:** se detecta por subdominio al arrancar (`TenantService`), se
@@ -57,3 +56,36 @@ src/app/
   solo ocultan cosas en pantalla; la API vuelve a revisar todo.
 - **Idiomas:** textos fijos en `src/assets/i18n/{es,en}.json` (sección `V2`);
   los textos de la API vienen como `{es, en}` y se muestran con el pipe `i18n`.
+
+## Sitio público (formulario de registro)
+
+| Ruta | Qué muestra |
+|---|---|
+| `/` | Eventos publicados del cliente |
+| `/evento/:slug` | Información del evento y sus formularios |
+| `/evento/:slug/registro/:formId` | Formulario dinámico por pasos, resumen y envío |
+| `/registro/confirmacion/:code` | Confirmación con el QR de entrada (a donde lleva el correo y el regreso de Stripe: `?pago=exito|cancelado|error`) |
+
+El formulario **no está escrito a mano**: se dibuja desde la estructura que
+publica la API (`PublicForm.schema`). Piezas en `src/app/v2/public`:
+
+- `form-engine.ts`: funciones puras (visibilidad `visible_when`, validación,
+  respuestas y total). Replican las reglas de la API para dar respuesta
+  inmediata; **la API vuelve a validar** y sus errores se muestran en el campo.
+- `form-state.ts`: estado con señales (valores, errores, paso actual,
+  asociaciones/iglesias, total).
+- `form-field.component.ts`: dibuja cualquier campo según su tipo.
+- `registration-page.component.*`: pasos, resumen, forma de pago y envío;
+  traduce los errores de la API (cupo lleno, talla agotada, duplicado...).
+
+No incluye todavía el captcha (Cloudflare Turnstile); la API solo lo exige si
+se configura `TURNSTILE_SECRET_KEY`.
+
+## Pruebas
+
+```bash
+npx ng test --watch=false --browsers=ChromeHeadless
+```
+
+Cubren el motor del formulario (condiciones, validación, respuestas y total).
+Si Chrome no está en la ruta por defecto, define `CHROME_BIN`.

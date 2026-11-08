@@ -5,7 +5,6 @@
  *
  * Variables:
  *   URL_API          URL de la API, ej. https://api.tuapp.com/api   (obligatoria)
- *   CITIES_API       API de ciudades (opcional)
  *   BASE_DOMAINS     dominios base separados por coma, ej. tuapp.com  (obligatoria)
  *   PLATFORM_SUBDOMAIN  subdominio del panel de plataforma (default: app)
  *   DEFAULT_TENANT   cliente si se abre sin subdominio (normalmente vacío en producción)
@@ -26,7 +25,6 @@ const defaultTenant = (process.env.DEFAULT_TENANT || '').trim();
 const content = `// Generado por set-env.js en el build. No editar a mano.
 export const URL_API = ${JSON.stringify(urlApi)};
 export const API_V2 = ${JSON.stringify(`${urlApi}/v2`)};
-export const CITIES_API = ${JSON.stringify(process.env.CITIES_API || 'https://countriesnow.space/api/v0.1')};
 export const BASE_DOMAINS = ${JSON.stringify(baseDomains)};
 export const PLATFORM_SUBDOMAIN = ${JSON.stringify(process.env.PLATFORM_SUBDOMAIN || 'app')};
 export const DEFAULT_TENANT: string | null = ${defaultTenant ? JSON.stringify(defaultTenant) : 'null'};

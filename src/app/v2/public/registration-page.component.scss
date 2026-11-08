@@ -1,0 +1,50 @@
+.reg { max-width: 760px; margin: 0 auto; }
+
+.reg__header { margin-bottom: 20px; }
+.reg__back { font-size: 14px; text-decoration: none; display: inline-block; margin-bottom: 6px; }
+.reg__title { font-size: 24px; font-weight: 700; margin: 0 0 4px; }
+
+.reg__progress { margin-bottom: 18px; }
+.reg__progress-text { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+.progress { height: 6px; background: var(--border); }
+.progress-bar { background: var(--brand-primary); transition: width .25s ease; }
+
+.reg__card { padding: 24px; margin-bottom: 16px; }
+.reg__step-title { font-size: 19px; font-weight: 700; margin: 0 0 14px; }
+
+.reg__nav {
+  display: flex; justify-content: space-between; gap: 12px;
+  position: sticky; bottom: 0; padding: 12px 0 16px;
+  background: linear-gradient(to top, var(--surface-muted) 70%, transparent);
+}
+.reg__nav .btn { min-width: 130px; }
+
+// ── Resumen ──────────────────────────────────────────────────────────
+.reg__block { border-top: 1px solid var(--border); padding-top: 14px; margin-top: 14px; }
+.reg__block:first-of-type { border-top: 0; margin-top: 0; padding-top: 0; }
+.reg__block-title { font-size: 15px; font-weight: 700; margin: 0; }
+.reg__dl { margin: 6px 0 0; }
+.reg__dl-row { display: flex; gap: 12px; padding: 5px 0; font-size: 14px; }
+.reg__dl-row dt { flex: 0 0 38%; color: var(--text-muted); font-weight: 400; }
+.reg__dl-row dd { flex: 1; margin: 0; word-break: break-word; }
+
+.reg__lines { list-style: none; padding: 0; margin: 8px 0 0; }
+.reg__lines li { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; font-size: 14px; border-bottom: 1px dashed var(--border); }
+.reg__total { display: flex; justify-content: space-between; padding-top: 10px; font-size: 16px; }
+
+.reg__pay { display: grid; gap: 10px; margin-top: 8px; }
+.reg__pay-option {
+  display: flex; gap: 12px; align-items: flex-start; cursor: pointer; margin: 0;
+  border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; background: #fff;
+}
+.reg__pay-option--on { border-color: var(--brand-primary); background: color-mix(in srgb, var(--brand-primary) 7%, #fff); }
+.reg__pay-option .form-check-input { margin-top: 4px; flex-shrink: 0; }
+.reg__pay-option .form-check-input:checked { background-color: var(--brand-primary); border-color: var(--brand-primary); }
+.reg__pay--invalid .reg__pay-option { border-color: #f1aeb5; }
+
+@media (max-width: 575.98px) {
+  .reg__card { padding: 18px 16px; }
+  .reg__dl-row { flex-direction: column; gap: 0; }
+  .reg__dl-row dt { flex-basis: auto; font-size: 12px; }
+  .reg__nav .btn { flex: 1; min-width: 0; }
+}
