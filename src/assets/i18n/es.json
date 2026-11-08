@@ -1,179 +1,4 @@
 {
-  "TITLE": "Registro al Congreso FEJA 2026",
-  "SIDEBAR": {
-    "STEP1": "Datos personales",
-    "STEP2": "Contacto de emergencia",
-    "STEP3": "Resumen",
-    "STEP4": "Confirmación",
-    "STEP5": "Recibido"
-  },
-  "TOPBAR": {
-    "Completed": "¡Registro completado!",
-    "Of": "de"
-  },
-  "INFO": {
-    "TITLE": "Información general",
-    "EVENT": "Feja | Union Pacífico 2026",
-    "CARDS": {
-      "Card1": {
-        "Title": "Costo",
-        "Label": "Inscripción",
-        "Description": "¡El costo de la inscripción es totalmente gratuito!"
-      },
-      "Card2": {
-        "Title": "Ubicación",
-        "Label": "Del Congreso",
-        "Description": "Estaremos esperandoles en Phoenix, Arizona"
-      },
-      "Card3": {
-        "Title": "Fechas",
-        "Label": "Del Evento",
-        "Description": "¡Del viernes 16 al domingo 18 de Octubre del 2026!"
-      },
-      "Card4": {
-        "Title": "Chaperones",
-        "Label": "Límite",
-        "Description1": "1 para los chicos",
-        "Description2": "1 para las chicas"
-      },
-      "Card5": {
-        "Title": "Información",
-        "Label": "Actividades",
-        "Description": "https://congreso-union.fesjaz.com"
-      },
-      "Card6": {
-        "Title": "Contactos",
-        "Description": [
-          {
-            "Name": "Haley Armenta:",
-            "Phone": "520-312-8901"
-          },
-          {
-            "Name": "Adriana Aviles:",
-            "Phone": "520-450-9778"
-          }
-        ]
-      }
-    },
-    "EMAIL": "Email oficial: fesjarizona@gmail.com"
-  },
-  "STEP1": {
-    "TITLE1": "Detalles Personales",
-    "TITLE2": "Datos de Domicilio",
-    "TITLE3": "Detalles de Registro",
-    "FORM-INPUTS": {
-      "InputName": "Nombre",
-      "ValidationName": "El nombre es requerido.",
-      "InputLastName": "Apellido",
-      "ValidationLastName": "El apellido es requerido.",
-      "InputEmail": "Correo Electrónico",
-      "ValidationEmail": "Ingrese un correo válido.",
-      "InputPhone": "Teléfono",
-      "ValidationPhone": "El teléfono es requerido.",
-      "InputBirthDate": "Fecha de Nacimiento",
-      "ValidationBirthDate": "La fecha de nacimiento es requerida.",
-      "InputGender": "Género",
-      "OptionMasc": "Masculino",
-      "OptionFem": "Femenino",
-      "ValidationGender": "El género es requerido.",
-      "InputState": "Estado",
-      "ValidationState": "El estado es requerido.",
-      "InputConf": "Conferencia",
-      "ValidationConf": "La Conferencia es requerida.",
-      "InputCity": "Ciudad",
-      "ValidationCity": "La Ciudad es requerida.",
-      "InputChurch": "Iglesia donde asiste",
-      "ValidationChurch": "La Iglesia es requerida."
-    },
-    "FORM-CHECKS": {
-      "OPTIONS": {
-        "OptionNo": "No",
-        "OptionYes": "Sí"
-      },
-      "Q1": {
-        "Question1": "¿Deseas incluir el almuerzo?*",
-        "Question1b": "¿Tiene alguna preferencia alimentaria?",
-        "PreFood": "Preferencia Alimentaria",
-        "PreFoodValidation": "Por favor, selecciona una preferencia alimentaria.",
-        "Options": {
-          "OptionSelected": "Seleccione una opción",
-          "Option1": "Sin Preferencia",
-          "Option2": "Vegetariano",
-          "Option3": "Vegano",
-          "Option4": "Otra",
-          "Description": "Especifica tu alergia, restricción, preferencia o intolerancia",
-          "DescriptionValidation": "Por favor, describe cualquier alergia, alimento que no consumes o indicación especial."
-        }
-      },
-      "Q2": {
-        "Question2": "¿Quieres incluir la playera oficial del evento?*",
-        "OptionLabel": "Talla de playera",
-        "OptionValidation": "La talla de playera es requerida."
-      },
-      "Q3": "¿Serás chaperón de tu grupo de jóvenes?"
-    },
-    "Warning": "*Al incluir el almuerzo y/o playera oficial, debes llamar a tu conferencia correspondiente para realizar el pago. O bien, acércate con el director de jóvenes de tu iglesia para más información."
-  },
-  "STEP2": {
-    "TITLE1": "Información de contacto de emergencia",
-    "Subtitle": "Todos los asistentes deben completar esta sección.",
-    "Description": "Tu seguridad es muy importante para nosotros, así que asegúrate de llenar los datos de contacto de alguien que podamos localizar en caso de emergencia.",
-    "TITLE2": "Datos de Emergencia",
-    "FORM-INPUTS": {
-      "InputNameContact": "Nombre del Contacto",
-      "ValidationNameContact": "El nombre del contacto es requerido.",
-      "InputPhoneContact": "Número de Teléfono",
-      "ValidationPhoneContact": "El numero de teléfono del contacto es requerido.",
-      "Options": {
-        "OptSelected": "Relación con el Contacto",
-        "Option1": "Esposo(a)",
-        "Option2": "Padres",
-        "Option3": "Hermano(a)",
-        "Option4": "Familiar",
-        "Option5": "Amigo(a)",
-        "Option6": "Otro",
-        "ValidationOption": "La relación es requerida."
-      }
-    }
-  },
-  "STEP3": {
-    "TITLE": "Resumen del Registro",
-    "buttonEdit": "Editar Información",
-    "FullNameLabel": "Nombre Completo",
-    "AgeLabel": "Edad",
-    "YearsLabel": "Años",
-    "NotSpecified": "No especificado",
-    "Male": "Masculino",
-    "Female": "Femenino",
-    "SizeSmall": "Chica",
-    "SizeMedium": "Mediana",
-    "SizeLarge": "Grande",
-    "SizeExtraLarge": "Extra Grande"
-  },
-  "STEP4": {
-    "TITLE": "¡Registro Confirmado!",
-    "Description1": "Tu información ha sido verificada correctamente.",
-    "Description2": "Haz clic en ",
-    "FinishLabel": "finalizar ",
-    "Description2b": "para completar tu registro al congreso.",
-    "EmergencyLabel": "Emergencia",
-    "ButtonEndRegister": "Finalizar Registro",
-    "LocationLabel": "Locación",
-    "EmergencyContact": "Emergencia"
-  },
-  "STEP5": {
-    "TITLE": "¡Gracias",
-    "DefaultName": "Amigo(a)",
-    "Subtitle": "La Feja recibió tu registro exitosamente.",
-    "Description1": "Hemos enviado un correo a ",
-    "Description2": " con los detalles de tu registro",
-    "Badget": "Si no encuentras el correo en tu bandeja de entrada, revisa tu carpeta de spam o correo no deseado.",
-    "ButtonBack": "Regresar a Feja.com"
-  },
-  "FOOTER": {
-    "NEXT": "Siguiente",
-    "BACK": "Atrás"
-  },
   "V2": {
     "COMMON": {
       "LOADING": "Cargando…",
@@ -253,6 +78,124 @@
         "PENDING": "Por cobrar"
       },
       "SUMMARY_NOTE": "Las gráficas y tablas completas del resumen llegan en el siguiente paso."
+    },
+    "PUBLIC": {
+      "HOME": {
+        "TITLE": "Eventos",
+        "SUBTITLE": "Elige un evento para registrarte.",
+        "NO_EVENTS": "Por ahora no hay eventos publicados.",
+        "VIEW": "Ver evento",
+        "REGISTER": "Registrarme"
+      },
+      "EVENT": {
+        "REGISTRATION": "Registro",
+        "BACK": "Todos los eventos",
+        "NOT_FOUND": "No encontramos este evento.",
+        "NO_FORMS": "El registro para este evento todavía no está disponible.",
+        "OPENS_ON": "Abre el {{date}}",
+        "CLOSES_ON": "Cierra el {{date}}",
+        "REGISTER_NOW": "Registrarme",
+        "WHEN": "Fecha",
+        "WHERE": "Lugar"
+      },
+      "AVAILABILITY": {
+        "open": "Registro abierto",
+        "not_open_yet": "Próximamente",
+        "closed": "Registro cerrado",
+        "full": "Cupo lleno"
+      },
+      "FORM": {
+        "STEP_OF": "Paso {{current}} de {{total}}",
+        "REVIEW": "Revisar y enviar",
+        "NEXT": "Siguiente",
+        "BACK": "Anterior",
+        "SUBMIT": "Enviar registro",
+        "SUBMITTING": "Enviando…",
+        "CLOSED_TITLE": "El registro no está disponible",
+        "FIX_ERRORS": "Revisa los campos marcados en rojo.",
+        "SELECT": "Selecciona…",
+        "OPTIONAL": "opcional",
+        "STATE": "Estado",
+        "CONFERENCE": "Asociación",
+        "CHURCH": "Iglesia",
+        "CHURCH_NOT_LISTED": "Mi iglesia no está en la lista",
+        "CHURCH_NAME": "Escribe el nombre de tu iglesia",
+        "CHURCH_PICK_LIST": "Elegir de la lista",
+        "CHURCH_NEED_CONFERENCE": "Primero elige tu asociación",
+        "CITY_NEED_STATE": "Primero elige tu estado",
+        "CITY_PICK": "Escribe o elige tu ciudad",
+        "CITY_TYPE": "Escribe tu ciudad",
+        "CHURCH_LOADING": "Cargando iglesias…",
+        "CHURCH_ERROR": "No pudimos cargar las iglesias.",
+        "SOLD_OUT": "agotado",
+        "FREE": "Incluido",
+        "SUMMARY_TITLE": "Revisa tu registro",
+        "SUMMARY_TEXT": "Confirma que tus datos son correctos antes de enviar.",
+        "EDIT": "Editar",
+        "YOUR_SELECTIONS": "Lo que elegiste",
+        "TOTAL": "Total",
+        "PAYMENT_TITLE": "¿Cómo vas a pagar?",
+        "PAY_ONLINE": "Con tarjeta ahora",
+        "PAY_ONLINE_HELP": "Serás llevado a una página segura de pago.",
+        "PAY_OFFLINE": "En efectivo u otro método",
+        "PAY_OFFLINE_HELP": "Pagas con el equipo de finanzas antes o durante el evento.",
+        "NO_COST": "Este registro no tiene costo.",
+        "YES": "Sí",
+        "NO": "No"
+      },
+      "ERR": {
+        "required": "Este campo es obligatorio.",
+        "invalid_email": "Escribe un correo válido.",
+        "invalid_phone": "Escribe un teléfono válido (7 a 15 dígitos).",
+        "invalid_number": "Escribe un número válido.",
+        "not_integer": "Debe ser un número entero.",
+        "too_short": "Es muy corto (mínimo {{min}}).",
+        "too_long": "Es muy largo (máximo {{max}}).",
+        "out_of_range": "El valor está fuera del rango permitido.",
+        "invalid_date": "Escribe una fecha válida.",
+        "future_date": "La fecha no puede ser futura.",
+        "invalid_option": "Elige una opción válida.",
+        "must_accept": "Debes aceptar para continuar.",
+        "pick_min": "Elige al menos {{n}}.",
+        "pick_max": "Elige máximo {{n}}.",
+        "invalid": "El valor no es válido."
+      },
+      "SERVER": {
+        "full": "Ya no hay lugares disponibles.",
+        "closed": "El registro está cerrado.",
+        "not_open_yet": "El registro todavía no abre.",
+        "already_registered": "Ya hay un registro con ese nombre y correo para este evento.",
+        "sold_out": "Se agotó uno de los productos que elegiste. Elige otra opción.",
+        "captcha": "No pudimos verificar que no eres un robot. Intenta de nuevo.",
+        "checkout_failed": "Tu registro quedó guardado, pero no pudimos abrir el pago. Puedes pagar desde la página de confirmación.",
+        "generic": "No pudimos guardar tu registro. Intenta de nuevo en unos minutos.",
+        "payment_method": "Elige cómo vas a pagar."
+      },
+      "CONFIRM": {
+        "TITLE": "¡Registro confirmado!",
+        "TITLE_PENDING": "Falta tu pago",
+        "HELLO": "Hola {{name}}, tu registro quedó guardado.",
+        "EVENT": "Evento",
+        "YOUR_SELECTIONS": "Lo que elegiste",
+        "TOTAL": "Total",
+        "PAID": "Pagado",
+        "PENDING": "Pendiente de pago",
+        "NO_COST": "Sin costo",
+        "QR_TITLE": "Tu código de entrada",
+        "QR_TEXT": "Presenta este código QR en la entrada para tu check-in.",
+        "CODE": "Código",
+        "DOWNLOAD_QR": "Descargar QR",
+        "PAY_NOW": "Pagar con tarjeta",
+        "PAY_OFFLINE_NOTE": "Puedes pagar en efectivo u otro método con el equipo de finanzas antes o durante el evento.",
+        "PAY_OK": "¡Recibimos tu pago!",
+        "PAY_CANCELED": "El pago se canceló. Puedes intentarlo de nuevo cuando quieras.",
+        "PAY_CHECKING": "Estamos confirmando tu pago…",
+        "CHECKED_IN": "Ya hiciste check-in.",
+        "CANCELLED": "Este registro fue cancelado.",
+        "NOT_FOUND": "No encontramos este registro. Revisa el enlace.",
+        "EMAIL_NOTE": "También te enviamos un correo con este código.",
+        "CHECKOUT_ERROR": "No pudimos abrir el pago. Intenta de nuevo."
+      }
     }
   }
 }

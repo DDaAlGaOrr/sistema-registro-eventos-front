@@ -1,0 +1,168 @@
+<div class="reg">
+  @switch (status()) {
+
+    @case ('loading') {
+      <p class="text-muted text-center py-5">{{ 'V2.COMMON.LOADING' | translate }}</p>
+    }
+
+    @case ('notfound') {
+      <div class="panel-card text-center py-5">
+        <p class="mb-3">{{ 'V2.PUBLIC.EVENT.NOT_FOUND' | translate }}</p>
+        <a routerLink="/" class="btn btn-brand">{{ 'V2.PUBLIC.EVENT.BACK' | translate }}</a>
+      </div>
+    }
+
+    @case ('error') {
+      <div class="panel-card text-center py-5">
+        <p class="mb-3">{{ 'V2.AUTH.TENANT_ERROR' | translate }}</p>
+        <button type="button" class="btn btn-brand" (click)="ngOnInit()">{{ 'V2.COMMON.RETRY' | translate }}</button>
+      </div>
+    }
+
+    @case ('closed') {
+      @if (form(); as f) {
+        <div class="panel-card text-center py-5">
+          <h1 class="reg__title">{{ 'V2.PUBLIC.FORM.CLOSED_TITLE' | translate }}</h1>
+          <p class="text-muted mb-1">{{ f.event.name | i18n }}</p>
+          <p class="fw-semibold mb-3">
+            {{ submitError() ? ((submitError()!.startsWith('raw:') ? submitError()!.slice(4) : (submitError()! | translate))) : ('V2.PUBLIC.AVAILABILITY.' + f.availability | translate) }}
+          </p>
+          @if (f.availability === 'not_open_yet' && f.opensAt) {
+            <p class="text-muted">{{ 'V2.PUBLIC.EVENT.OPENS_ON' | translate: { date: dateTime(f.opensAt, f) } }}</p>
+          }
+          <a [routerLink]="['/evento', slug]" class="btn btn-outline-secondary">{{ 'V2.COMMON.BACK' | translate }}</a>
+        </div>
+      }
+    }
+
+    @case ('ready') {
+      @if (form(); as f) {
+        @if (state(); as s) {
+
+          <header class="reg__header">
+            <a [routerLink]="['/evento', slug]" class="reg__back"><i class="bi bi-arrow-left"></i> {{ f.event.name | i18n }}</a>
+            <h1 class="reg__title">{{ f.title | i18n }}</h1>
+            <p class="text-muted small mb-0">{{ eventDates(f) }}@if (f.event.venue) { · {{ f.event.venue }} }</p>
+          </header>
+
+          <!-- Progreso -->
+          <div class="reg__progress">
+            <div class="reg__progress-text">
+              {{ 'V2.PUBLIC.FORM.STEP_OF' | translate: { current: s.stepIndex() + 1, total: totalSteps() } }}
+              ·
+              <strong>{{ s.onReview() ? ('V2.PUBLIC.FORM.REVIEW' | translate) : (s.currentStep()!.title | i18n) }}</strong>
+            </div>
+            <div class="progress" role="progressbar" [attr.aria-valuenow]="progress()" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar" [style.width.%]="progress()"></div>
+            </div>
+          </div>
+
+          @if (submitError(); as err) {
+            <div class="alert alert-danger" role="alert">
+              {{ err.startsWith('raw:') ? err.slice(4) : (err | translate) }}
+            </div>
+          }
+
+          @if (!s.onReview() && s.currentStep(); as step) {
+            <!-- Un paso del formulario -->
+            <section class="panel-card reg__card">
+              <h2 class="reg__step-title">{{ step.title | i18n }}</h2>
+              @if (step.description) { <p class="text-muted">{{ step.description | i18n }}</p> }
+              <div class="row g-3">
+                @for (field of visibleFields(step); track field.key) {
+                  <div [class]="colClass(field)">
+                    <app-form-field [field]="field" [state]="s" />
+                  </div>
+                }
+              </div>
+            </section>
+
+            <nav class="reg__nav">
+              @if (s.stepIndex() > 0) {
+                <button type="button" class="btn btn-outline-secondary" (click)="back()">{{ 'V2.PUBLIC.FORM.BACK' | translate }}</button>
+              } @else { <span></span> }
+              <button type="button" class="btn btn-brand" (click)="next()">
+                {{ (s.stepIndex() === s.reviewIndex() - 1 ? 'V2.PUBLIC.FORM.REVIEW' : 'V2.PUBLIC.FORM.NEXT') | translate }}
+              </button>
+            </nav>
+          } @else {
+            <!-- Resumen -->
+            <section class="panel-card reg__card">
+              <h2 class="reg__step-title">{{ 'V2.PUBLIC.FORM.SUMMARY_TITLE' | translate }}</h2>
+              <p class="text-muted">{{ 'V2.PUBLIC.FORM.SUMMARY_TEXT' | translate }}</p>
+
+              @for (step of s.steps(); track step.key; let i = $index) {
+                <div class="reg__block">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h3 class="reg__block-title">{{ step.title | i18n }}</h3>
+                    <button type="button" class="btn btn-link btn-sm" (click)="edit(i)">{{ 'V2.PUBLIC.FORM.EDIT' | translate }}</button>
+                  </div>
+                  <dl class="reg__dl">
+                    @for (field of summaryFields(step); track field.key) {
+                      <div class="reg__dl-row">
+                        <dt>{{ field.label | i18n }}</dt>
+                        <dd>{{ display(field, s.values()[field.key]) }}</dd>
+                      </div>
+                    }
+                  </dl>
+                </div>
+              }
+
+              @if (s.lines().length) {
+                <div class="reg__block">
+                  <h3 class="reg__block-title">{{ 'V2.PUBLIC.FORM.YOUR_SELECTIONS' | translate }}</h3>
+                  <ul class="reg__lines">
+                    @for (line of s.lines(); track line.item.code) {
+                      <li>
+                        <span>{{ line.item.name | i18n }}@if (line.variant) { <span class="text-muted"> · {{ line.variant.label | i18n }}</span> }</span>
+                        @if (f.payments.enabled) { <span>{{ money(line.priceCents) }}</span> }
+                      </li>
+                    }
+                  </ul>
+                  @if (f.payments.enabled) {
+                    <div class="reg__total"><span>{{ 'V2.PUBLIC.FORM.TOTAL' | translate }}</span><strong>{{ money(s.totalCents()) }}</strong></div>
+                  }
+                </div>
+              }
+
+              <!-- Cómo pagar -->
+              @if (needsPayment()) {
+                <div class="reg__block">
+                  <h3 class="reg__block-title">{{ 'V2.PUBLIC.FORM.PAYMENT_TITLE' | translate }}</h3>
+                  <div class="reg__pay" [class.reg__pay--invalid]="paymentError()">
+                    @if (f.payments.online) {
+                      <label class="reg__pay-option" [class.reg__pay-option--on]="paymentMethod() === 'online'">
+                        <input type="radio" name="pay" class="form-check-input" [checked]="paymentMethod() === 'online'"
+                               (change)="paymentMethod.set('online'); paymentError.set(false)" />
+                        <span><strong>{{ 'V2.PUBLIC.FORM.PAY_ONLINE' | translate }}</strong>
+                          <small class="d-block text-muted">{{ 'V2.PUBLIC.FORM.PAY_ONLINE_HELP' | translate }}</small></span>
+                      </label>
+                    }
+                    @if (f.payments.offline) {
+                      <label class="reg__pay-option" [class.reg__pay-option--on]="paymentMethod() === 'offline'">
+                        <input type="radio" name="pay" class="form-check-input" [checked]="paymentMethod() === 'offline'"
+                               (change)="paymentMethod.set('offline'); paymentError.set(false)" />
+                        <span><strong>{{ 'V2.PUBLIC.FORM.PAY_OFFLINE' | translate }}</strong>
+                          <small class="d-block text-muted">{{ 'V2.PUBLIC.FORM.PAY_OFFLINE_HELP' | translate }}</small></span>
+                      </label>
+                    }
+                  </div>
+                  @if (paymentError()) { <div class="text-danger small mt-2" role="alert">{{ 'V2.PUBLIC.SERVER.payment_method' | translate }}</div> }
+                </div>
+              } @else if (f.payments.enabled) {
+                <p class="text-muted mb-0">{{ 'V2.PUBLIC.FORM.NO_COST' | translate }}</p>
+              }
+            </section>
+
+            <nav class="reg__nav">
+              <button type="button" class="btn btn-outline-secondary" [disabled]="submitting()" (click)="back()">{{ 'V2.PUBLIC.FORM.BACK' | translate }}</button>
+              <button type="button" class="btn btn-brand" [disabled]="submitting()" (click)="submit()">
+                {{ (submitting() ? 'V2.PUBLIC.FORM.SUBMITTING' : 'V2.PUBLIC.FORM.SUBMIT') | translate }}
+              </button>
+            </nav>
+          }
+        }
+      }
+    }
+  }
+</div>
